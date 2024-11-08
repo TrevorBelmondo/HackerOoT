@@ -9,7 +9,7 @@
 #include "assets/objects/object_po_field/object_po_field.h"
 
 #define FLAGS \
-    (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_4 | ACTOR_FLAG_5 | ACTOR_FLAG_IGNORE_QUAKE)
+    (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_ALWAYSUPDATE | ACTOR_FLAG_NOCULL | ACTOR_FLAG_IGNORE_QUAKE)
 
 void EnPoField_Init(Actor* thisx, PlayState* play);
 void EnPoField_Destroy(Actor* thisx, PlayState* play);

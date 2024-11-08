@@ -7,7 +7,7 @@
 #include "z_elf_msg2.h"
 #include "terminal.h"
 
-#define FLAGS ACTOR_FLAG_4
+#define FLAGS ACTOR_FLAG_ALWAYSUPDATE
 
 void ElfMsg2_Init(Actor* thisx, PlayState* play);
 void ElfMsg2_Destroy(Actor* thisx, PlayState* play);

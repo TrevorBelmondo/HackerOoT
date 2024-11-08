@@ -13,9 +13,9 @@
 #include "assets/scenes/indoors/daiyousei_izumi/daiyousei_izumi_scene.h"
 
 #if OOT_VERSION < NTSC_1_1
-#define FLAGS (ACTOR_FLAG_4 | ACTOR_FLAG_5)
+#define FLAGS (ACTOR_FLAG_ALWAYSUPDATE | ACTOR_FLAG_NOCULL)
 #else
-#define FLAGS (ACTOR_FLAG_4 | ACTOR_FLAG_5 | ACTOR_FLAG_25)
+#define FLAGS (ACTOR_FLAG_ALWAYSUPDATE | ACTOR_FLAG_NOCULL | ACTOR_FLAG_25)
 #endif
 
 typedef enum BgDyYoseizoRewardType {

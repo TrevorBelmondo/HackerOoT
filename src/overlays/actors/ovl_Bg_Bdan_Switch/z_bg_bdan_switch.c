@@ -7,7 +7,7 @@
 #include "z_bg_bdan_switch.h"
 #include "assets/objects/object_bdan_objects/object_bdan_objects.h"
 
-#define FLAGS ACTOR_FLAG_4
+#define FLAGS ACTOR_FLAG_ALWAYSUPDATE
 
 void BgBdanSwitch_Init(Actor* thisx, PlayState* play);
 void BgBdanSwitch_Destroy(Actor* thisx, PlayState* play);

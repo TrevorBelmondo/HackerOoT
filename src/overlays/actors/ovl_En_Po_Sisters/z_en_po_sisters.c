@@ -9,7 +9,7 @@
 #include "assets/objects/object_po_sisters/object_po_sisters.h"
 
 #define FLAGS                                                                                                    \
-    (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_4 | ACTOR_FLAG_9 | ACTOR_FLAG_IGNORE_QUAKE | \
+    (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_ALWAYSUPDATE | ACTOR_FLAG_9 | ACTOR_FLAG_IGNORE_QUAKE | \
      ACTOR_FLAG_14)
 
 void EnPoSisters_Init(Actor* thisx, PlayState* play);

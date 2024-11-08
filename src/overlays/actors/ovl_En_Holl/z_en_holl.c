@@ -1,6 +1,6 @@
 #include "z_en_holl.h"
 
-#define FLAGS ACTOR_FLAG_4
+#define FLAGS ACTOR_FLAG_ALWAYSUPDATE
 
 /*
  * Horizontal holls parameters (`ENHOLL_H_*`)

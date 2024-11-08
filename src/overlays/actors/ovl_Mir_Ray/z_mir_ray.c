@@ -7,7 +7,7 @@
 #include "z_mir_ray.h"
 #include "assets/objects/object_mir_ray/object_mir_ray.h"
 
-#define FLAGS (ACTOR_FLAG_4 | ACTOR_FLAG_5)
+#define FLAGS (ACTOR_FLAG_ALWAYSUPDATE | ACTOR_FLAG_NOCULL)
 
 void MirRay_Init(Actor* thisx, PlayState* play);
 void MirRay_Destroy(Actor* thisx, PlayState* play);

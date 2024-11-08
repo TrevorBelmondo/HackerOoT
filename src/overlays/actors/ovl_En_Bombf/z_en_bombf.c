@@ -8,7 +8,7 @@
 #include "assets/objects/object_bombf/object_bombf.h"
 #include "overlays/effects/ovl_Effect_Ss_Dead_Sound/z_eff_ss_dead_sound.h"
 
-#define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_4)
+#define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_ALWAYSUPDATE)
 
 void EnBombf_Init(Actor* thisx, PlayState* play);
 void EnBombf_Destroy(Actor* thisx, PlayState* play);
@@ -104,7 +104,7 @@ void EnBombf_Init(Actor* thisx, PlayState* play) {
     thisx->focus.pos = thisx->world.pos;
 
     if (Actor_FindNearby(play, thisx, ACTOR_BG_DDAN_KD, ACTORCAT_BG, 10000.0f) != NULL) {
-        thisx->flags |= ACTOR_FLAG_5;
+        thisx->flags |= ACTOR_FLAG_NOCULL;
     }
 
     thisx->colChkInfo.cylRadius = 10.0f;
@@ -260,7 +260,7 @@ void EnBombf_Explode(EnBombf* this, PlayState* play) {
     Player* player;
 
     if (this->explosionCollider.elements[0].dim.modelSphere.radius == 0) {
-        this->actor.flags |= ACTOR_FLAG_5;
+        this->actor.flags |= ACTOR_FLAG_NOCULL;
         Rumble_Request(this->actor.xzDistToPlayer, 255, 20, 150);
     }
 
@@ -431,7 +431,7 @@ void EnBombf_Update(Actor* thisx, PlayState* play) {
                 Camera_RequestQuake(&play->mainCamera, 2, 11, 8);
                 thisx->params = BOMBFLOWER_EXPLOSION;
                 this->timer = 10;
-                thisx->flags |= ACTOR_FLAG_5;
+                thisx->flags |= ACTOR_FLAG_NOCULL;
                 EnBombf_SetupAction(this, EnBombf_Explode);
             }
         }

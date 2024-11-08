@@ -180,7 +180,7 @@ void EnCrow_SetupDamaged(EnCrow* this, PlayState* play) {
     }
 
     this->collider.base.acFlags &= ~AC_ON;
-    this->actor.flags |= ACTOR_FLAG_4;
+    this->actor.flags |= ACTOR_FLAG_ALWAYSUPDATE;
 
     this->actionFunc = EnCrow_Damaged;
 }
@@ -401,7 +401,7 @@ void EnCrow_Respawn(EnCrow* this, PlayState* play) {
         }
         if (Math_StepToF(&this->actor.scale.x, target, target * 0.1f)) {
             this->actor.flags |= ACTOR_FLAG_ATTENTION_ENABLED;
-            this->actor.flags &= ~ACTOR_FLAG_4;
+            this->actor.flags &= ~ACTOR_FLAG_ALWAYSUPDATE;
             this->actor.colChkInfo.health = 1;
             EnCrow_SetupFlyIdle(this);
         }

@@ -7,7 +7,7 @@
 #include "z_bg_ddan_kd.h"
 #include "assets/objects/object_ddan_objects/object_ddan_objects.h"
 
-#define FLAGS ACTOR_FLAG_4
+#define FLAGS ACTOR_FLAG_ALWAYSUPDATE
 
 void BgDdanKd_Init(Actor* thisx, PlayState* play);
 void BgDdanKd_Destroy(Actor* thisx, PlayState* play);

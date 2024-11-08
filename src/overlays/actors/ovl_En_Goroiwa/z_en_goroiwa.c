@@ -11,7 +11,7 @@
 #include "quake.h"
 #include "terminal.h"
 
-#define FLAGS ACTOR_FLAG_4
+#define FLAGS ACTOR_FLAG_ALWAYSUPDATE
 
 typedef s32 (*EnGoroiwaUnkFunc1)(EnGoroiwa* this, PlayState* play);
 typedef void (*EnGoroiwaUnkFunc2)(EnGoroiwa* this);

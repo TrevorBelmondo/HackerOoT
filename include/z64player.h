@@ -855,15 +855,15 @@ typedef struct Player {
     /* 0x06B2 */ char unk_6B4[0x004];
     /* 0x06B6 */ Vec3s headLimbRot;
     /* 0x06BC */ Vec3s upperLimbRot;
-    /* 0x06C2 */ s16 unk_6C2;
-    /* 0x06C4 */ f32 unk_6C4;
+    /* 0x06C2 */ s16 shapePitchOffset;
+    /* 0x06C4 */ f32 shapeOffsetY;
     /* 0x06C8 */ SkelAnime upperSkelAnime;
     /* 0x070C */ Vec3s upperJointTable[PLAYER_LIMB_BUF_COUNT];
     /* 0x079C */ Vec3s upperMorphTable[PLAYER_LIMB_BUF_COUNT];
     /* 0x082C */ UpperActionFunc upperActionFunc;
     /* 0x0830 */ f32 upperAnimInterpWeight;
-    /* 0x0834 */ s16 unk_834;
-    /* 0x0836 */ s8 unk_836;
+    /* 0x0834 */ s16 fpsItemTimer;
+    /* 0x0836 */ s8 fpsItemShootState;
     /* 0x0837 */ u8 putAwayCooldownTimer;
     /* 0x0838 */ f32 speedXZ; // Controls horizontal speed, used for `actor.speed`. Current or target value depending on context.
     /* 0x083C */ s16 yaw; // General yaw value, used both for world and shape rotation. Current or target value depending on context.

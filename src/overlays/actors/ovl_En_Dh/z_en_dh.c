@@ -1,7 +1,7 @@
 #include "z_en_dh.h"
 #include "assets/objects/object_dh/object_dh.h"
 
-#define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_4 | ACTOR_FLAG_10)
+#define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_ALWAYSUPDATE | ACTOR_FLAG_10)
 
 typedef enum EnDhAction {
     /* 0 */ DH_WAIT,
@@ -481,8 +481,8 @@ void EnDh_CollisionCheck(EnDh* this, PlayState* play) {
         if ((this->actor.colChkInfo.damageEffect != 0) && (this->actor.colChkInfo.damageEffect != 6)) {
             this->collider2.base.atFlags = this->collider2.elements[0].base.atElemFlags = AT_NONE; // also ATELEM_NONE
             this->collider2.elements[0].base.atDmgInfo.dmgFlags = this->collider2.elements[0].base.atDmgInfo.damage = 0;
-            if (player->unk_844 != 0) {
-                this->unk_258 = player->unk_845;
+            if (player->comboTimer != 0) {
+                this->unk_258 = player->slashCounter;
             }
             Actor_SetColorFilter(&this->actor, COLORFILTER_COLORFLAG_RED, 255, COLORFILTER_BUFFLAG_OPA, 8);
             lastHealth = this->actor.colChkInfo.health;
@@ -523,7 +523,7 @@ void EnDh_Update(Actor* thisx, PlayState* play) {
             CollisionCheck_SetOC(play, &play->colChkCtx, &this->collider1.base);
         }
         if (((this->curAction != DH_DAMAGE) && (this->actor.shape.yOffset == 0.0f)) ||
-            ((player->unk_844 != 0) && (player->unk_845 != this->unk_258))) {
+            ((player->comboTimer != 0) && (player->slashCounter != this->unk_258))) {
 
             CollisionCheck_SetAC(play, &play->colChkCtx, &this->collider2.base);
             CollisionCheck_SetAT(play, &play->colChkCtx, &this->collider2.base);

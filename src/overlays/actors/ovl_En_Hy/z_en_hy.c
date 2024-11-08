@@ -16,7 +16,7 @@
 #include "assets/objects/object_cob/object_cob.h"
 #include "assets/objects/object_os_anime/object_os_anime.h"
 
-#define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_FRIENDLY | ACTOR_FLAG_4)
+#define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_FRIENDLY | ACTOR_FLAG_ALWAYSUPDATE)
 
 void EnHy_Init(Actor* thisx, PlayState* play);
 void EnHy_Destroy(Actor* thisx, PlayState* play);
@@ -1160,7 +1160,7 @@ void EnHy_WaitForObjects(EnHy* this, PlayState* play) {
         Animation_ChangeByInfo(&this->skelAnime, sAnimationInfo, sModelInfo[ENHY_GET_TYPE(&this->actor)].animInfoIndex);
 
         if ((play->sceneId == SCENE_BACK_ALLEY_DAY) || (play->sceneId == SCENE_MARKET_DAY)) {
-            this->actor.flags &= ~ACTOR_FLAG_4;
+            this->actor.flags &= ~ACTOR_FLAG_ALWAYSUPDATE;
             this->actor.uncullZoneScale = 0.0f;
         }
 

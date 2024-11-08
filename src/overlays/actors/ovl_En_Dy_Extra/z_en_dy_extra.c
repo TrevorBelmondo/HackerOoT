@@ -8,7 +8,7 @@
 #include "assets/objects/object_dy_obj/object_dy_obj.h"
 #include "terminal.h"
 
-#define FLAGS (ACTOR_FLAG_4 | ACTOR_FLAG_5)
+#define FLAGS (ACTOR_FLAG_ALWAYSUPDATE | ACTOR_FLAG_NOCULL)
 
 void EnDyExtra_Init(Actor* thisx, PlayState* play);
 void EnDyExtra_Destroy(Actor* thisx, PlayState* play);

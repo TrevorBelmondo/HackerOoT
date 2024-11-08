@@ -124,10 +124,10 @@ typedef struct ActorShape {
 #define ACTOR_FLAG_FRIENDLY (1 << 3)
 
 //
-#define ACTOR_FLAG_4 (1 << 4)
+#define ACTOR_FLAG_ALWAYSUPDATE (1 << 4)
 
 //
-#define ACTOR_FLAG_5 (1 << 5)
+#define ACTOR_FLAG_NOCULL (1 << 5)
 
 //
 #define ACTOR_FLAG_6 (1 << 6)

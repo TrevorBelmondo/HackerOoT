@@ -3,7 +3,7 @@
 #include "terminal.h"
 #include "assets/objects/object_efc_star_field/object_efc_star_field.h"
 
-#define FLAGS (ACTOR_FLAG_4 | ACTOR_FLAG_5)
+#define FLAGS (ACTOR_FLAG_ALWAYSUPDATE | ACTOR_FLAG_NOCULL)
 
 void EnFireRock_Init(Actor* thisx, PlayState* play);
 void EnFireRock_Destroy(Actor* thisx, PlayState* play);

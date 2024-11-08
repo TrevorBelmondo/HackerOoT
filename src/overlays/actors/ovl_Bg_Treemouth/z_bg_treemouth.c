@@ -9,7 +9,7 @@
 #include "assets/objects/object_spot04_objects/object_spot04_objects.h"
 #include "overlays/effects/ovl_Effect_Ss_Hahen/z_eff_ss_hahen.h"
 
-#define FLAGS (ACTOR_FLAG_4 | ACTOR_FLAG_5)
+#define FLAGS (ACTOR_FLAG_ALWAYSUPDATE | ACTOR_FLAG_NOCULL)
 
 void BgTreemouth_Init(Actor* thisx, PlayState* play);
 void BgTreemouth_Destroy(Actor* thisx, PlayState* play);

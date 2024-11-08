@@ -5,7 +5,7 @@
 #include "terminal.h"
 #include "versions.h"
 
-#define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_FRIENDLY | ACTOR_FLAG_4)
+#define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_FRIENDLY | ACTOR_FLAG_ALWAYSUPDATE)
 
 void EnNiwLady_Init(Actor* thisx, PlayState* play);
 void EnNiwLady_Destroy(Actor* thisx, PlayState* play);

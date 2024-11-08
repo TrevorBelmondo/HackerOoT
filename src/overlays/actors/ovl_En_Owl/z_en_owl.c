@@ -10,7 +10,7 @@
 #include "assets/scenes/overworld/spot16/spot16_scene.h"
 #include "terminal.h"
 
-#define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_FRIENDLY | ACTOR_FLAG_4)
+#define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_FRIENDLY | ACTOR_FLAG_ALWAYSUPDATE)
 
 void EnOwl_Init(Actor* thisx, PlayState* play);
 void EnOwl_Destroy(Actor* thisx, PlayState* play);
@@ -833,7 +833,7 @@ void func_80ACBAB8(EnOwl* this, PlayState* play) {
 }
 
 void func_80ACBC0C(EnOwl* this, PlayState* play) {
-    this->actor.flags |= ACTOR_FLAG_5;
+    this->actor.flags |= ACTOR_FLAG_NOCULL;
 
     if (this->actor.xzDistToPlayer > 6000.0f && !(this->actionFlags & 0x80)) {
         Actor_Kill(&this->actor);

@@ -7,7 +7,7 @@
 #include "z_en_blkobj.h"
 #include "assets/objects/object_blkobj/object_blkobj.h"
 
-#define FLAGS (ACTOR_FLAG_4 | ACTOR_FLAG_5)
+#define FLAGS (ACTOR_FLAG_ALWAYSUPDATE | ACTOR_FLAG_NOCULL)
 
 void EnBlkobj_Init(Actor* thisx, PlayState* play);
 void EnBlkobj_Destroy(Actor* thisx, PlayState* play);

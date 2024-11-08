@@ -1098,7 +1098,7 @@ int func_8002DD6C(Player* player) {
 }
 
 int func_8002DD78(Player* player) {
-    return func_8002DD6C(player) && (player->unk_834 != 0);
+    return func_8002DD6C(player) && (player->fpsItemTimer != 0);
 }
 
 int func_8002DDA8(PlayState* play) {
@@ -2428,7 +2428,7 @@ void Actor_UpdateAll(PlayState* play, ActorContext* actorCtx) {
                 actor->yawTowardsPlayer = Actor_WorldYawTowardActor(actor, &player->actor);
                 actor->flags &= ~ACTOR_FLAG_24;
 
-                if ((DECR(actor->freezeTimer) == 0) && (actor->flags & (ACTOR_FLAG_4 | ACTOR_FLAG_6))) {
+                if ((DECR(actor->freezeTimer) == 0) && (actor->flags & (ACTOR_FLAG_ALWAYSUPDATE | ACTOR_FLAG_6))) {
                     if (actor == player->focusActor) {
                         actor->isLockedOn = true;
                     } else {
@@ -2769,7 +2769,7 @@ void func_800315AC(PlayState* play, ActorContext* actorCtx) {
             actor->isDrawn = false;
 
             if (!IS_DEBUG || (HREG(64) != 1) || ((HREG(65) != -1) && (HREG(65) != HREG(66))) || (HREG(71) == 0)) {
-                if ((actor->init == NULL) && (actor->draw != NULL) && (actor->flags & (ACTOR_FLAG_5 | ACTOR_FLAG_6))) {
+                if ((actor->init == NULL) && (actor->draw != NULL) && (actor->flags & (ACTOR_FLAG_NOCULL | ACTOR_FLAG_6))) {
                     if ((actor->flags & ACTOR_FLAG_REACT_TO_LENS) &&
                         ((play->roomCtx.curRoom.lensMode == LENS_MODE_SHOW_ACTORS) || play->actorCtx.lensActive ||
                          (actor->room != play->roomCtx.curRoom.num))) {

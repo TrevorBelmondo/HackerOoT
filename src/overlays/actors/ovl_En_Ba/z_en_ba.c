@@ -7,7 +7,7 @@
 #include "z_en_ba.h"
 #include "assets/objects/object_bxa/object_bxa.h"
 
-#define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_4)
+#define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_ALWAYSUPDATE)
 
 void EnBa_Init(Actor* thisx, PlayState* play);
 void EnBa_Destroy(Actor* thisx, PlayState* play);
