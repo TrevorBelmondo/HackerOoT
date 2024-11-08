@@ -643,7 +643,7 @@ void BossVa_Init(Actor* thisx, PlayState* play2) {
                 if (GET_EVENTCHKINF(EVENTCHKINF_76)) {
                     sCsState = INTRO_CALL_BARI;
                     sDoorState = 100;
-                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
                     play->envCtx.screenFillColor[0] = 0xDC;
                     play->envCtx.screenFillColor[1] = 0xDC;
                     play->envCtx.screenFillColor[2] = 0xBE;
@@ -784,7 +784,7 @@ void BossVa_BodyIntro(BossVa* this, PlayState* play) {
             play->envCtx.screenFillColor[1] = 0xDC;
             play->envCtx.screenFillColor[2] = 0xBE;
             play->envCtx.screenFillColor[3] = 0xD2;
-            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_WAIT);
             player->actor.world.rot.y = player->actor.shape.rot.y = 0x7FFF;
             sCsState++;
             break;
@@ -812,7 +812,7 @@ void BossVa_BodyIntro(BossVa* this, PlayState* play) {
         case INTRO_CLOSE_DOOR:
             this->timer--;
             if (this->timer == 0) {
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_2);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_TURN_AROUND_SURPRISED_SHORT);
                 sCsState++;
                 this->timer = 30;
             }
@@ -827,7 +827,7 @@ void BossVa_BodyIntro(BossVa* this, PlayState* play) {
             }
             break;
         case INTRO_CRACKLE:
-            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
             sCsState++;
             break;
         case INTRO_SPAWN_BARI:
@@ -958,7 +958,7 @@ void BossVa_BodyIntro(BossVa* this, PlayState* play) {
             sSubCamAtMaxVelFrac = sSubCamEyeMaxVelFrac;
             if (this->timer >= 45000) {
                 play->envCtx.lightSettingOverride = 1;
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_8);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_WAIT);
             } else if (this->timer >= 35000) {
                 SEQCMD_PLAY_SEQUENCE(SEQ_PLAYER_BGM_MAIN, 0, 0, NA_BGM_BOSS);
             }
@@ -1015,7 +1015,7 @@ void BossVa_BodyIntro(BossVa* this, PlayState* play) {
                 sSubCamId = SUB_CAM_ID_DONE;
                 Cutscene_StopManual(play, &play->csCtx);
                 Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STAT_ACTIVE);
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
                 sCsState++;
                 SET_EVENTCHKINF(EVENTCHKINF_76);
                 player->actor.shape.rot.y = player->actor.world.rot.y = this->actor.yawTowardsPlayer + 0x8000;
@@ -1428,14 +1428,14 @@ void BossVa_BodyPhase4(BossVa* this, PlayState* play) {
     } else {
         Math_SmoothStepToS(&this->vaBodySpinRate, 0, 1, 0x96, 0);
         if (this->timer > 0) {
-            if ((player->stateFlags1 & PLAYER_STATE1_26) && (this->timer > 35)) {
+            if ((player->stateFlags1 & PLAYER_STATE1_TAKING_DAMAGE ) && (this->timer > 35)) {
                 this->timer = 35;
             }
             Math_SmoothStepToF(&this->actor.shape.yOffset, -480.0f, 1.0f, 30.0f, 0.0f);
             this->colliderBody.elem.acDmgInfo.dmgFlags = DMG_SWORD | DMG_BOOMERANG | DMG_DEKU_STICK;
             this->timer--;
         } else {
-            if ((player->stateFlags1 & PLAYER_STATE1_26) && (this->timer < -60)) {
+            if ((player->stateFlags1 & PLAYER_STATE1_TAKING_DAMAGE ) && (this->timer < -60)) {
                 this->timer = -59;
             }
             if ((play->gameplayFrames % 4) == 0) {
@@ -1533,7 +1533,7 @@ void BossVa_BodyDeath(BossVa* this, PlayState* play) {
 
     switch (sCsState) {
         case DEATH_START:
-            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
             Cutscene_StartManual(play, &play->csCtx);
             sSubCamId = Play_CreateSubCamera(play);
             Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STAT_WAIT);
@@ -1595,7 +1595,7 @@ void BossVa_BodyDeath(BossVa* this, PlayState* play) {
                 EffectSsDeadSound_SpawnStationary(play, &this->actor.projectedPos, NA_SE_EN_BALINADE_DEAD, 1, 1, 0x28);
                 this->onCeiling = 2; // Not used by body
                 BossVa_SetDeathEnv(play);
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_8);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_WAIT);
             }
             break;
         case DEATH_CORE_BURST:
@@ -1636,7 +1636,7 @@ void BossVa_BodyDeath(BossVa* this, PlayState* play) {
 
                 mainCam->at = sSubCamAt;
 
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
                 sCsState++;
 
                 Actor_Spawn(&play->actorCtx, play, ACTOR_ITEM_B_HEART, this->actor.world.pos.x, this->actor.world.pos.y,
@@ -2004,7 +2004,7 @@ void BossVa_ZapperAttack(BossVa* this, PlayState* play) {
     sp98 = Math_Vec3f_Yaw(&sp7C, &this->armTip);
     tmp17 = sp98 - this->actor.shape.rot.y;
 
-    if ((sp8E >= ABS(tmp17) || this->burst) && !(sBodyState & 0x80) && !(player->stateFlags1 & PLAYER_STATE1_26)) {
+    if ((sp8E >= ABS(tmp17) || this->burst) && !(sBodyState & 0x80) && !(player->stateFlags1 & PLAYER_STATE1_TAKING_DAMAGE )) {
 
         if (!this->burst) {
             sp94 = sp98 - this->actor.shape.rot.y;
@@ -2066,7 +2066,7 @@ void BossVa_ZapperAttack(BossVa* this, PlayState* play) {
                 this->timer2 = 0;
             }
 
-            if ((this->timer2 < 0) && (player->stateFlags1 & PLAYER_STATE1_26)) {
+            if ((this->timer2 < 0) && (player->stateFlags1 & PLAYER_STATE1_TAKING_DAMAGE )) {
                 BossVa_Spark(play, this, 1, 30, 0.0f, 0.0f, SPARK_LINK, 0.0f, true);
             }
         }
@@ -2268,7 +2268,7 @@ void BossVa_ZapperEnraged(BossVa* this, PlayState* play) {
     sp6C = Math_Vec3f_Yaw(&sp54, &this->armTip);
     tmp16 = sp6C - this->actor.shape.rot.y;
 
-    if ((ABS(tmp16) <= 0x4650 || this->burst) && !(sBodyState & 0x80) && !(player->stateFlags1 & PLAYER_STATE1_26)) {
+    if ((ABS(tmp16) <= 0x4650 || this->burst) && !(sBodyState & 0x80) && !(player->stateFlags1 & PLAYER_STATE1_TAKING_DAMAGE )) {
         if (!this->burst) {
 
             sp68 = sp6C - this->actor.shape.rot.y;
@@ -2325,7 +2325,7 @@ void BossVa_ZapperEnraged(BossVa* this, PlayState* play) {
                 this->timer2 = 0;
             }
 
-            if ((this->timer2 < 0) && (player->stateFlags1 & PLAYER_STATE1_26)) {
+            if ((this->timer2 < 0) && (player->stateFlags1 & PLAYER_STATE1_TAKING_DAMAGE )) {
                 BossVa_Spark(play, this, 1, 30, 0.0f, 0, SPARK_LINK, 0.0f, true);
             }
         }
@@ -2421,7 +2421,7 @@ void BossVa_BariIntro(BossVa* this, PlayState* play) {
     switch (sCsState) {
         case INTRO_LOOK_BARI:
             if (this->actor.params == BOSSVA_BARI_UPPER_1) {
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
                 if (Math_SmoothStepToF(&this->actor.world.pos.y, 60.0f, 0.3f, 1.0f, 0.15f) == 0.0f) {
                     this->timer--;
                     if (this->timer == 0) {

@@ -818,7 +818,7 @@ s32 BossTw_BeamHitPlayerCheck(BossTw* this, PlayState* play) {
                 }
 
                 player->bodyIsBurning = true;
-                Player_PlaySfx(player, player->ageProperties->unk_92 + NA_SE_VO_LI_DEMO_DAMAGE);
+                Player_PlaySfx(player, player->ageProperties->ageVoiceSfxOffset + NA_SE_VO_LI_DEMO_DAMAGE);
             }
         }
 
@@ -1500,7 +1500,7 @@ void BossTw_TwinrovaMergeCS(BossTw* this, PlayState* play) {
         case 0:
             this->csState2 = 1;
             Cutscene_StartManual(play, &play->csCtx);
-            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_57);
+            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_LOOK_AROUND_SURPRISED);
             this->subCamId = Play_CreateSubCamera(play);
             Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STAT_WAIT);
             Play_ChangeCameraStatus(play, this->subCamId, CAM_STAT_ACTIVE);
@@ -1640,7 +1640,7 @@ void BossTw_TwinrovaMergeCS(BossTw* this, PlayState* play) {
                     Animation_MorphToPlayOnce(&this->skelAnime, &gTwinrovaIntroAnim, 0.0f);
                     this->workf[ANIM_SW_TGT] = Animation_GetLastFrame(&gTwinrovaIntroAnim);
                     this->timers[0] = 50;
-                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_2);
+                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_TURN_AROUND_SURPRISED_SHORT);
                     Actor_PlaySfx(&this->actor, NA_SE_EN_TWINROBA_TRANSFORM);
                     SEQCMD_PLAY_SEQUENCE(SEQ_PLAYER_BGM_MAIN, 0, 0, NA_BGM_BOSS);
                 }
@@ -1683,11 +1683,11 @@ void BossTw_TwinrovaMergeCS(BossTw* this, PlayState* play) {
             }
 
             if (this->timers[3] == 19) {
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_5);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_SURPRISED);
             }
 
             if (this->timers[3] == 16) {
-                Player_PlaySfx(player, player->ageProperties->unk_92 + NA_SE_VO_LI_SURPRISE);
+                Player_PlaySfx(player, player->ageProperties->ageVoiceSfxOffset + NA_SE_VO_LI_SURPRISE);
             }
 
             if ((this->timers[3] != 0) && (this->timers[3] < 20)) {
@@ -1716,7 +1716,7 @@ void BossTw_TwinrovaMergeCS(BossTw* this, PlayState* play) {
                 this->subCamId = SUB_CAM_ID_DONE;
                 this->csState2 = this->subCamId;
                 Cutscene_StopManual(play, &play->csCtx);
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
                 this->work[TW_PLLR_IDX] = 0;
                 this->targetPos = sTwinrovaPillarPos[0];
                 BossTw_TwinrovaSetupFly(this, play);
@@ -1796,7 +1796,7 @@ void BossTw_TwinrovaIntroCS(BossTw* this, PlayState* play) {
                 player->actor.world.pos.x = player->actor.world.pos.z = .0f;
                 this->csState2 = 1;
                 Cutscene_StartManual(play, &play->csCtx);
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_57);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_LOOK_AROUND_SURPRISED);
                 this->subCamId = Play_CreateSubCamera(play);
                 Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STAT_WAIT);
                 Play_ChangeCameraStatus(play, this->subCamId, CAM_STAT_ACTIVE);
@@ -2279,7 +2279,7 @@ void BossTw_TwinrovaIntroCS(BossTw* this, PlayState* play) {
                 this->subCamId = SUB_CAM_ID_DONE;
                 this->csState2 = this->subCamId;
                 Cutscene_StopManual(play, &play->csCtx);
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
                 BossTw_SetupWait(this, play);
             }
             break;
@@ -2683,7 +2683,7 @@ void BossTw_TwinrovaDeathCS(BossTw* this, PlayState* play) {
         case 0:
             this->csState2 = 1;
             Cutscene_StartManual(play, &play->csCtx);
-            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_WAIT);
             this->subCamId = Play_CreateSubCamera(play);
             Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STAT_WAIT);
             Play_ChangeCameraStatus(play, this->subCamId, CAM_STAT_ACTIVE);
@@ -2722,7 +2722,7 @@ void BossTw_TwinrovaDeathCS(BossTw* this, PlayState* play) {
                 sKoumePtr->actor.world.pos.z = sKotakePtr->actor.world.pos.z;
                 sKoumePtr->work[YAW_TGT] = sKotakePtr->work[YAW_TGT] = sKoumePtr->actor.shape.rot.x =
                     sKotakePtr->actor.shape.rot.x = sKoumePtr->actor.shape.rot.y = sKotakePtr->actor.shape.rot.y = 0;
-                Player_SetCsActionWithHaltedActors(play, &sKoumePtr->actor, PLAYER_CSACTION_1);
+                Player_SetCsActionWithHaltedActors(play, &sKoumePtr->actor, PLAYER_CSMODE_IDLE);
                 sKoumePtr->actor.flags |= ACTOR_FLAG_ATTENTION_ENABLED;
             }
             break;
@@ -2811,7 +2811,7 @@ void BossTw_TwinrovaDeathCS(BossTw* this, PlayState* play) {
                 this->csState2 = 4;
                 this->subCamId = SUB_CAM_ID_DONE;
                 Cutscene_StopManual(play, &play->csCtx);
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
                 SEQCMD_PLAY_SEQUENCE(SEQ_PLAYER_BGM_MAIN, 0, 0, NA_BGM_BOSS_CLEAR);
                 Actor_SpawnAsChild(&play->actorCtx, &this->actor, play, ACTOR_DOOR_WARP1, 600.0f, 230.0f, 0.0f, 0, 0, 0,
                                    WARP_DUNGEON_ADULT);
@@ -4044,7 +4044,7 @@ void BossTw_BlastFire(BossTw* this, PlayState* play) {
                     player->bodyIsBurning = true;
 
                     if (this->work[BURN_TMR] == 0) {
-                        Player_PlaySfx(player, player->ageProperties->unk_92 + NA_SE_VO_LI_DEMO_DAMAGE);
+                        Player_PlaySfx(player, player->ageProperties->ageVoiceSfxOffset + NA_SE_VO_LI_DEMO_DAMAGE);
                         this->work[BURN_TMR] = 40;
                     }
 
@@ -4771,7 +4771,7 @@ void BossTw_UpdateEffects(PlayState* play) {
                     if (eff->workf[EFF_SCALE] == 0.0f) {
                         eff->type = TWEFF_NONE;
                         if (eff->target == NULL) {
-                            player->stateFlags2 &= ~PLAYER_STATE2_15;
+                            player->stateFlags2 &= ~PLAYER_STATE2_PAUSE_MOST_UPDATING ;
                             sFreezeState = 0;
                         }
                     }
@@ -4787,9 +4787,9 @@ void BossTw_UpdateEffects(PlayState* play) {
 
                         if (eff->workf[EFF_ROLL] >= 0.8f) {
                             eff->workf[EFF_ROLL] -= 0.8f;
-                            player->stateFlags2 |= PLAYER_STATE2_15;
+                            player->stateFlags2 |= PLAYER_STATE2_PAUSE_MOST_UPDATING ;
                         } else {
-                            player->stateFlags2 &= ~PLAYER_STATE2_15;
+                            player->stateFlags2 &= ~PLAYER_STATE2_PAUSE_MOST_UPDATING ;
                         }
 
                         if ((sKotakePtr->workf[UNK_F11] > 10.0f) && (sKotakePtr->workf[UNK_F11] < 200.0f)) {

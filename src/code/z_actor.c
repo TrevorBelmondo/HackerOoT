@@ -1074,7 +1074,7 @@ f32 Actor_HeightDiff(Actor* actorA, Actor* actorB) {
 }
 
 f32 Player_GetHeight(Player* player) {
-    f32 offset = (player->stateFlags1 & PLAYER_STATE1_23) ? 32.0f : 0.0f;
+    f32 offset = (player->stateFlags1 & PLAYER_STATE1_RIDING_HORSE ) ? 32.0f : 0.0f;
 
     if (LINK_IS_ADULT) {
         return offset + 68.0f;
@@ -1084,9 +1084,9 @@ f32 Player_GetHeight(Player* player) {
 }
 
 f32 func_8002DCE4(Player* player) {
-    if (player->stateFlags1 & PLAYER_STATE1_23) {
+    if (player->stateFlags1 & PLAYER_STATE1_RIDING_HORSE ) {
         return 8.0f;
-    } else if (player->stateFlags1 & PLAYER_STATE1_27) {
+    } else if (player->stateFlags1 & PLAYER_STATE1_SWIMMING ) {
         return (R_RUN_SPEED_LIMIT / 100.0f) * 0.6f;
     } else {
         return R_RUN_SPEED_LIMIT / 100.0f;
@@ -1094,7 +1094,7 @@ f32 func_8002DCE4(Player* player) {
 }
 
 int func_8002DD6C(Player* player) {
-    return player->stateFlags1 & PLAYER_STATE1_3;
+    return player->stateFlags1 & PLAYER_STATE1_AIMING_FPS_ITEM ;
 }
 
 int func_8002DD78(Player* player) {
@@ -1110,13 +1110,13 @@ int func_8002DDA8(PlayState* play) {
 s32 func_8002DDE4(PlayState* play) {
     Player* player = GET_PLAYER(play);
 
-    return player->stateFlags2 & PLAYER_STATE2_3;
+    return player->stateFlags2 & PLAYER_STATE2_MAKING_REACTABLE_NOISE;
 }
 
 s32 func_8002DDF4(PlayState* play) {
     Player* player = GET_PLAYER(play);
 
-    return player->stateFlags2 & PLAYER_STATE2_12;
+    return player->stateFlags2 & PLAYER_STATE2_IDLE_WHILE_CLIMBING ;
 }
 
 void func_8002DE04(PlayState* play, Actor* actorA, Actor* actorB) {
@@ -1138,12 +1138,12 @@ void func_8002DE74(PlayState* play, Player* player) {
 
 void Actor_MountHorse(PlayState* play, Player* player, Actor* horse) {
     player->rideActor = horse;
-    player->stateFlags1 |= PLAYER_STATE1_23;
+    player->stateFlags1 |= PLAYER_STATE1_RIDING_HORSE ;
     horse->child = &player->actor;
 }
 
 int func_8002DEEC(Player* player) {
-    return (player->stateFlags1 & (PLAYER_STATE1_DEAD | PLAYER_STATE1_29)) ||
+    return (player->stateFlags1 & (PLAYER_STATE1_DEAD | PLAYER_STATE1_IN_CUTSCENE )) ||
            (player->csAction != PLAYER_CSACTION_NONE);
 }
 
@@ -1178,7 +1178,7 @@ s32 Player_SetCsAction(PlayState* play, Actor* csActor, u8 csAction) {
  * There are no safety checks to see if Player is already in some form of a cutscene state.
  * This will instantly take effect.
  *
- * `haltActorsDuringCsAction` being set to true in this function means that eventually `PLAYER_STATE1_29` will be set.
+ * `haltActorsDuringCsAction` being set to true in this function means that eventually `PLAYER_STATE1_IN_CUTSCENE ` will be set.
  * This makes it so actors belonging to categories `ACTORCAT_ENEMY` and `ACTORCAT_MISC` will not update
  * while Player is performing the cutscene action.
  *
@@ -1809,12 +1809,12 @@ s32 Actor_OfferGetItem(Actor* actor, PlayState* play, s32 getItemId, f32 xzRange
     Player* player = GET_PLAYER(play);
 
     if (!(player->stateFlags1 &
-          (PLAYER_STATE1_DEAD | PLAYER_STATE1_CHARGING_SPIN_ATTACK | PLAYER_STATE1_13 | PLAYER_STATE1_14 |
-           PLAYER_STATE1_18 | PLAYER_STATE1_19 | PLAYER_STATE1_20 | PLAYER_STATE1_21)) &&
+          (PLAYER_STATE1_DEAD | PLAYER_STATE1_CHARGING_SPIN_ATTACK | PLAYER_STATE1_HANGING_FROM_LEDGE_SLIP  | PLAYER_STATE1_CLIMBING_ONTO_LEDGE  |
+           PLAYER_STATE1_JUMPING  | PLAYER_STATE1_FREEFALLING  | PLAYER_STATE1_IN_FIRST_PERSON_MODE  | PLAYER_STATE1_CLIMBING )) &&
         Player_GetExplosiveHeld(player) < 0) {
         if ((((player->heldActor != NULL) || (actor == player->talkActor)) && (getItemId > GI_NONE) &&
              (getItemId < GI_MAX)) ||
-            (!(player->stateFlags1 & (PLAYER_STATE1_CARRYING_ACTOR | PLAYER_STATE1_29)))) {
+            (!(player->stateFlags1 & (PLAYER_STATE1_CARRYING_ACTOR | PLAYER_STATE1_IN_CUTSCENE )))) {
             if ((actor->xzDistToPlayer < xzRange) && (fabsf(actor->yDistToPlayer) < yRange)) {
                 s16 yawDiff = actor->yawTowardsPlayer - player->actor.shape.rot.y;
                 s32 absYawDiff = ABS(yawDiff);
@@ -1883,8 +1883,8 @@ u32 Actor_SetRideActor(PlayState* play, Actor* horse, s32 mountSide) {
     Player* player = GET_PLAYER(play);
 
     if (!(player->stateFlags1 &
-          (PLAYER_STATE1_DEAD | PLAYER_STATE1_CARRYING_ACTOR | PLAYER_STATE1_CHARGING_SPIN_ATTACK | PLAYER_STATE1_13 |
-           PLAYER_STATE1_14 | PLAYER_STATE1_18 | PLAYER_STATE1_19 | PLAYER_STATE1_20 | PLAYER_STATE1_21))) {
+          (PLAYER_STATE1_DEAD | PLAYER_STATE1_CARRYING_ACTOR | PLAYER_STATE1_CHARGING_SPIN_ATTACK | PLAYER_STATE1_HANGING_FROM_LEDGE_SLIP  |
+           PLAYER_STATE1_CLIMBING_ONTO_LEDGE  | PLAYER_STATE1_JUMPING  | PLAYER_STATE1_FREEFALLING  | PLAYER_STATE1_IN_FIRST_PERSON_MODE  | PLAYER_STATE1_CLIMBING ))) {
         player->rideActor = horse;
         player->mountSide = mountSide;
         return true;
@@ -2308,29 +2308,29 @@ void Actor_InitContext(PlayState* play, ActorContext* actorCtx, ActorEntry* play
 
 u32 sCategoryFreezeMasks[ACTORCAT_MAX] = {
     // ACTORCAT_SWITCH
-    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_28,
+    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_SKIP_OTHER_ACTORS_UPDATE,
     // ACTORCAT_BG
-    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_28,
+    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_SKIP_OTHER_ACTORS_UPDATE,
     // ACTORCAT_PLAYER
     0,
     // ACTORCAT_EXPLOSIVE
-    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_10 | PLAYER_STATE1_28,
+    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_GETTING_ITEM  | PLAYER_STATE1_SKIP_OTHER_ACTORS_UPDATE,
     // ACTORCAT_NPC
     PLAYER_STATE1_DEAD,
     // ACTORCAT_ENEMY
-    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_28 | PLAYER_STATE1_29,
+    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_SKIP_OTHER_ACTORS_UPDATE | PLAYER_STATE1_IN_CUTSCENE ,
     // ACTORCAT_PROP
-    PLAYER_STATE1_DEAD | PLAYER_STATE1_28,
+    PLAYER_STATE1_DEAD | PLAYER_STATE1_SKIP_OTHER_ACTORS_UPDATE,
     // ACTORCAT_ITEMACTION
     0,
     // ACTORCAT_MISC
-    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_28 | PLAYER_STATE1_29,
+    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_SKIP_OTHER_ACTORS_UPDATE | PLAYER_STATE1_IN_CUTSCENE ,
     // ACTORCAT_BOSS
-    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_10 | PLAYER_STATE1_28,
+    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_GETTING_ITEM  | PLAYER_STATE1_SKIP_OTHER_ACTORS_UPDATE,
     // ACTORCAT_DOOR
     0,
     // ACTORCAT_CHEST
-    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_28,
+    PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_SKIP_OTHER_ACTORS_UPDATE,
 };
 
 void Actor_UpdateAll(PlayState* play, ActorContext* actorCtx) {
@@ -2377,7 +2377,7 @@ void Actor_UpdateAll(PlayState* play, ActorContext* actorCtx) {
 
     categoryFreezeMaskP = &sCategoryFreezeMasks[0];
 
-    if (player->stateFlags2 & PLAYER_STATE2_27) {
+    if (player->stateFlags2 & PLAYER_STATE2_PLAYING_OCARINA_GENERAL ) {
         requiredActorFlag = ACTOR_FLAG_25;
     }
 
@@ -4489,7 +4489,7 @@ s32 func_80035124(Actor* actor, PlayState* play) {
 u8 func_800353E8(PlayState* play) {
     Player* player = GET_PLAYER(play);
 
-    return player->unk_845;
+    return player->slashCounter;
 }
 
 /**

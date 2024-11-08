@@ -435,7 +435,7 @@ void EnKz_SetupMweep(EnKz* this, PlayState* play) {
     subCamEye.y += -100.0f;
     subCamEye.z += 260.0f;
     Play_SetCameraAtEye(play, this->subCamId, &subCamAt, &subCamEye);
-    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_8);
+    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_WAIT);
     this->actor.speed = 0.1f;
     this->actionFunc = EnKz_Mweep;
 }
@@ -467,7 +467,7 @@ void EnKz_Mweep(EnKz* this, PlayState* play) {
 void EnKz_StopMweep(EnKz* this, PlayState* play) {
     Play_ChangeCameraStatus(play, this->returnToCamId, CAM_STAT_ACTIVE);
     Play_ClearCamera(play, this->subCamId);
-    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
     this->actionFunc = EnKz_Wait;
 }
 

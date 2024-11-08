@@ -370,7 +370,7 @@ s32 EnXc_SerenadeCS(EnXc* this, PlayState* play) {
         s32 stateFlags = player->stateFlags1;
 
         if (CHECK_OWNED_EQUIP(EQUIP_TYPE_BOOTS, EQUIP_INV_BOOTS_IRON) && !GET_EVENTCHKINF(EVENTCHKINF_52) &&
-            !(stateFlags & PLAYER_STATE1_29) && !Play_InCsMode(play)) {
+            !(stateFlags & PLAYER_STATE1_IN_CUTSCENE ) && !Play_InCsMode(play)) {
             s32 pad;
 
             Cutscene_SetScript(play, gIceCavernSerenadeCs);

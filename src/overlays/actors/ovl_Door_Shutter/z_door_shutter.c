@@ -828,7 +828,7 @@ void DoorShutter_SetupClosed(DoorShutter* this, PlayState* play) {
     if (DoorShutter_SetupDoor(this, play) && !(player->stateFlags1 & PLAYER_STATE1_CARRYING_ACTOR)) {
         // The door is barred behind the player
         DoorShutter_SetupAction(this, DoorShutter_WaitPlayerSurprised);
-        Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_2);
+        Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_TURN_AROUND_SURPRISED_SHORT);
     }
 }
 
@@ -868,7 +868,7 @@ void DoorShutter_JabuDoorClose(DoorShutter* this, PlayState* play) {
 
 void DoorShutter_WaitPlayerSurprised(DoorShutter* this, PlayState* play) {
     if (this->actionTimer++ > 30) {
-        Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_7);
+        Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_END);
         DoorShutter_SetupDoor(this, play);
     }
 }
@@ -915,7 +915,7 @@ void DoorShutter_Update(Actor* thisx, PlayState* play) {
     DoorShutter* this = (DoorShutter*)thisx;
     Player* player = GET_PLAYER(play);
 
-    if (!(player->stateFlags1 & (PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_10 | PLAYER_STATE1_28)) ||
+    if (!(player->stateFlags1 & (PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_GETTING_ITEM  | PLAYER_STATE1_SKIP_OTHER_ACTORS_UPDATE)) ||
         (this->actionFunc == DoorShutter_WaitForObject)) {
         this->actionFunc(this, play);
     }

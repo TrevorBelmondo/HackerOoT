@@ -602,8 +602,8 @@ void EnMb_SetupStunned(EnMb* this) {
 void EnMb_Stunned(EnMb* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
 
-    if ((player->stateFlags2 & PLAYER_STATE2_7) && player->actor.parent == &this->actor) {
-        player->stateFlags2 &= ~PLAYER_STATE2_7;
+    if ((player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) && player->actor.parent == &this->actor) {
+        player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
         player->actor.parent = NULL;
 #if OOT_VERSION >= PAL_1_0
         player->av2.actionVar2 = 200;
@@ -724,8 +724,8 @@ void EnMb_SpearPatrolEndCharge(EnMb* this, PlayState* play) {
     s16 yawPlayerToWaypoint;
 
 #if OOT_VERSION >= PAL_1_0
-    if ((player->stateFlags2 & PLAYER_STATE2_7) && player->actor.parent == &this->actor) {
-        player->stateFlags2 &= ~PLAYER_STATE2_7;
+    if ((player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) && player->actor.parent == &this->actor) {
+        player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
         player->actor.parent = NULL;
         player->av2.actionVar2 = 200;
         Actor_SetPlayerKnockbackLargeNoDamage(play, &this->actor, 4.0f, this->actor.world.rot.y, 4.0f);
@@ -916,7 +916,7 @@ void EnMb_SpearPatrolPrepareAndCharge(EnMb* this, PlayState* play) {
 
     if (this->attackCollider.base.atFlags & AT_HIT) {
         if (this->attackCollider.base.at == &player->actor) {
-            if (!endCharge && !(player->stateFlags2 & PLAYER_STATE2_7)) {
+            if (!endCharge && !(player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY )) {
                 if (player->invincibilityTimer < 0) {
                     if (player->invincibilityTimer <= -40) {
                         player->invincibilityTimer = 0;
@@ -938,7 +938,7 @@ void EnMb_SpearPatrolPrepareAndCharge(EnMb* this, PlayState* play) {
         }
     }
 
-    if ((player->stateFlags2 & PLAYER_STATE2_7) && player->actor.parent == &this->actor) {
+    if ((player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) && player->actor.parent == &this->actor) {
         player->actor.world.pos.x = this->actor.world.pos.x + Math_CosS(this->actor.shape.rot.y) * 10.0f +
                                     Math_SinS(this->actor.shape.rot.y) * 89.0f;
         hasHitPlayer = true;
@@ -950,22 +950,22 @@ void EnMb_SpearPatrolPrepareAndCharge(EnMb* this, PlayState* play) {
     }
 
     if (endCharge) {
-        if (hasHitPlayer || (player->stateFlags2 & PLAYER_STATE2_7)) {
+        if (hasHitPlayer || (player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY )) {
 #if OOT_VERSION < PAL_1_0
-            player->stateFlags2 &= ~PLAYER_STATE2_7;
+            player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
             this->attackCollider.base.atFlags &= ~AT_HIT;
             player->actor.parent = NULL;
             Actor_SetPlayerKnockbackLargeNoDamage(play, &this->actor, 4.0f, this->actor.world.rot.y, 4.0f);
 #elif OOT_VERSION < NTSC_1_2
-            player->stateFlags2 &= ~PLAYER_STATE2_7;
+            player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
             this->attackCollider.base.atFlags &= ~AT_HIT;
             player->actor.parent = NULL;
             player->av2.actionVar2 = 200;
             Actor_SetPlayerKnockbackLargeNoDamage(play, &this->actor, 4.0f, this->actor.world.rot.y, 4.0f);
 #else
             this->attackCollider.base.atFlags &= ~AT_HIT;
-            if (player->stateFlags2 & PLAYER_STATE2_7) {
-                player->stateFlags2 &= ~PLAYER_STATE2_7;
+            if (player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) {
+                player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
                 player->actor.parent = NULL;
                 player->av2.actionVar2 = 200;
                 Actor_SetPlayerKnockbackLargeNoDamage(play, &this->actor, 4.0f, this->actor.world.rot.y, 4.0f);
@@ -998,7 +998,7 @@ void EnMb_SpearPatrolImmediateCharge(EnMb* this, PlayState* play) {
 
     if (this->attackCollider.base.atFlags & AT_HIT) {
         if (this->attackCollider.base.at == &player->actor) {
-            if (!endCharge && !(player->stateFlags2 & PLAYER_STATE2_7)) {
+            if (!endCharge && !(player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY )) {
                 if (player->invincibilityTimer < 0) {
                     if (player->invincibilityTimer <= -40) {
                         player->invincibilityTimer = 0;
@@ -1020,7 +1020,7 @@ void EnMb_SpearPatrolImmediateCharge(EnMb* this, PlayState* play) {
         }
     }
 
-    if ((player->stateFlags2 & PLAYER_STATE2_7) && player->actor.parent == &this->actor) {
+    if ((player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) && player->actor.parent == &this->actor) {
         player->actor.world.pos.x = this->actor.world.pos.x + Math_CosS(this->actor.shape.rot.y) * 10.0f +
                                     Math_SinS(this->actor.shape.rot.y) * 89.0f;
         hasHitPlayer = true;
@@ -1032,22 +1032,22 @@ void EnMb_SpearPatrolImmediateCharge(EnMb* this, PlayState* play) {
     }
 
     if (endCharge) {
-        if (hasHitPlayer || (player->stateFlags2 & PLAYER_STATE2_7)) {
+        if (hasHitPlayer || (player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY )) {
 #if OOT_VERSION < PAL_1_0
             this->attackCollider.base.atFlags &= ~AT_HIT;
-            player->stateFlags2 &= ~PLAYER_STATE2_7;
+            player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
             player->actor.parent = NULL;
             Actor_SetPlayerKnockbackLargeNoDamage(play, &this->actor, 4.0f, this->actor.world.rot.y, 4.0f);
 #elif OOT_VERSION < NTSC_1_2
             this->attackCollider.base.atFlags &= ~AT_HIT;
-            player->stateFlags2 &= ~PLAYER_STATE2_7;
+            player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
             player->actor.parent = NULL;
             player->av2.actionVar2 = 200;
             Actor_SetPlayerKnockbackLargeNoDamage(play, &this->actor, 4.0f, this->actor.world.rot.y, 4.0f);
 #else
             this->attackCollider.base.atFlags &= ~AT_HIT;
-            if (player->stateFlags2 & PLAYER_STATE2_7) {
-                player->stateFlags2 &= ~PLAYER_STATE2_7;
+            if (player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) {
+                player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
                 player->actor.parent = NULL;
                 player->av2.actionVar2 = 200;
                 Actor_SetPlayerKnockbackLargeNoDamage(play, &this->actor, 4.0f, this->actor.world.rot.y, 4.0f);
@@ -1270,7 +1270,7 @@ void EnMb_ClubWaitPlayerNear(EnMb* this, PlayState* play) {
 
     SkelAnime_Update(&this->skelAnime);
     if (Math_Vec3f_DistXZ(&this->actor.home.pos, &player->actor.world.pos) < this->playerDetectionRange &&
-        !(player->stateFlags1 & PLAYER_STATE1_26) && ABS(relYawFromPlayer) < 0x3E80) {
+        !(player->stateFlags1 & PLAYER_STATE1_TAKING_DAMAGE ) && ABS(relYawFromPlayer) < 0x3E80) {
         EnMb_SetupClubAttack(this);
     }
 }
@@ -1334,15 +1334,15 @@ void EnMb_SpearDead(EnMb* this, PlayState* play) {
 #if OOT_VERSION < NTSC_1_1
     // Empty
 #elif OOT_VERSION < PAL_1_0
-    if ((player->stateFlags2 & PLAYER_STATE2_7) && player->actor.parent == &this->actor) {
-        player->stateFlags2 &= ~PLAYER_STATE2_7;
+    if ((player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) && player->actor.parent == &this->actor) {
+        player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
         player->actor.parent = NULL;
         Actor_SetPlayerKnockbackLargeNoDamage(play, &this->actor, 4.0f, this->actor.world.rot.y, 4.0f);
         this->attack = ENMB_ATTACK_NONE;
     }
 #else
-    if ((player->stateFlags2 & PLAYER_STATE2_7) && player->actor.parent == &this->actor) {
-        player->stateFlags2 &= ~PLAYER_STATE2_7;
+    if ((player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) && player->actor.parent == &this->actor) {
+        player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
         player->actor.parent = NULL;
         player->av2.actionVar2 = 200;
         Actor_SetPlayerKnockbackLargeNoDamage(play, &this->actor, 4.0f, this->actor.world.rot.y, 4.0f);
@@ -1425,8 +1425,8 @@ void EnMb_CheckColliding(EnMb* this, PlayState* play) {
         this->bodyCollider.base.acFlags &= ~AC_HIT;
         if (this->actor.colChkInfo.damageEffect != ENMB_DMGEFF_IGNORE &&
             this->actor.colChkInfo.damageEffect != ENMB_DMGEFF_FREEZE) {
-            if ((player->stateFlags2 & PLAYER_STATE2_7) && player->actor.parent == &this->actor) {
-                player->stateFlags2 &= ~PLAYER_STATE2_7;
+            if ((player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) && player->actor.parent == &this->actor) {
+                player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
                 player->actor.parent = NULL;
 #if OOT_VERSION >= PAL_1_0
                 player->av2.actionVar2 = 200;

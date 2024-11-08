@@ -309,7 +309,7 @@ void EnTorch2_Update(Actor* thisx, PlayState* play2) {
 
                 } else if (sSwordJumpState != 0) {
                     sStickTilt = 0.0f;
-                    player->stateFlags3 |= PLAYER_STATE3_2;
+                    player->stateFlags3 |= PLAYER_STATE3_PAUSE_ACTION_FUNC ;
                     Math_SmoothStepToF(&this->actor.world.pos.x,
                                        (Math_SinS(player->actor.shape.rot.y - 0x3E8) * 45.0f) +
                                            player->actor.world.pos.x,
@@ -323,7 +323,7 @@ void EnTorch2_Update(Actor* thisx, PlayState* play2) {
                         ((player->invincibilityTimer > 0) && (this->meleeWeaponState == 0))) {
                         this->actor.world.rot.y = this->actor.shape.rot.y = this->actor.yawTowardsPlayer;
                         input->cur.button = BTN_A;
-                        player->stateFlags3 &= ~PLAYER_STATE3_2;
+                        player->stateFlags3 &= ~PLAYER_STATE3_PAUSE_ACTION_FUNC ;
                         sStickTilt = 127.0f;
                         player->skelAnime.curFrame = 3.0f;
                         sStickAngle = this->actor.yawTowardsPlayer + 0x8000;
@@ -360,7 +360,7 @@ void EnTorch2_Update(Actor* thisx, PlayState* play2) {
 
                                 sStickTilt = 0.0f;
                                 sSwordJumpState = 1;
-                                player->stateFlags3 |= PLAYER_STATE3_2;
+                                player->stateFlags3 |= PLAYER_STATE3_PAUSE_ACTION_FUNC ;
                                 this->actor.flags &= ~ACTOR_FLAG_ATTENTION_ENABLED;
                                 sSwordJumpTimer = 27;
                                 player->meleeWeaponState = 0;
@@ -486,7 +486,7 @@ void EnTorch2_Update(Actor* thisx, PlayState* play2) {
             this->meleeWeaponState = 0;
             input->cur.stick_x = input->cur.stick_y = 0;
             if ((this->invincibilityTimer > 0) && (this->actor.world.pos.y < (this->actor.floorHeight - 160.0f))) {
-                this->stateFlags3 &= ~PLAYER_STATE3_0;
+                this->stateFlags3 &= ~PLAYER_STATE3_IGNORE_CEILING_FLOOR_AND_WATER ;
                 this->actor.flags |= ACTOR_FLAG_ATTENTION_ENABLED;
                 this->invincibilityTimer = 0;
                 this->actor.velocity.y = 0.0f;
@@ -569,13 +569,13 @@ void EnTorch2_Update(Actor* thisx, PlayState* play2) {
     // Handles Dark Link being damaged
 
     if ((this->actor.colChkInfo.health == 0) && sDeathFlag) {
-        this->csAction = PLAYER_CSACTION_24;
+        this->csAction = PLAYER_CSMODE_KNOCKED_TO_GROUND;
         this->csActor = &player->actor;
         this->cv.haltActorsDuringCsAction = true;
         sDeathFlag = false;
     }
     if ((this->invincibilityTimer == 0) && (this->actor.colChkInfo.health != 0) &&
-        (this->cylinder.base.acFlags & AC_HIT) && !(this->stateFlags1 & PLAYER_STATE1_26) &&
+        (this->cylinder.base.acFlags & AC_HIT) && !(this->stateFlags1 & PLAYER_STATE1_TAKING_DAMAGE ) &&
         !(this->meleeWeaponQuads[0].base.atFlags & AT_HIT) && !(this->meleeWeaponQuads[1].base.atFlags & AT_HIT)) {
 
         if (!Actor_ApplyDamage(&this->actor)) {
@@ -590,7 +590,7 @@ void EnTorch2_Update(Actor* thisx, PlayState* play2) {
             sActionState = ENTORCH2_DEATH;
             Enemy_StartFinishingBlow(play, &this->actor);
             Item_DropCollectibleRandom(play, &this->actor, &thisx->world.pos, 0xC0);
-            this->stateFlags3 &= ~PLAYER_STATE3_2;
+            this->stateFlags3 &= ~PLAYER_STATE3_PAUSE_ACTION_FUNC ;
         } else {
             func_800F5ACC(NA_BGM_MINI_BOSS);
             if (this->actor.colChkInfo.damageEffect == 1) {
@@ -607,8 +607,8 @@ void EnTorch2_Update(Actor* thisx, PlayState* play2) {
                 this->knockbackSpeed = 8.0f;
                 this->knockbackRot = this->actor.yawTowardsPlayer + 0x8000;
                 Actor_SetDropFlag(&this->actor, &this->cylinder.elem, true);
-                this->stateFlags3 &= ~PLAYER_STATE3_2;
-                this->stateFlags3 |= PLAYER_STATE3_0;
+                this->stateFlags3 &= ~PLAYER_STATE3_PAUSE_ACTION_FUNC ;
+                this->stateFlags3 |= PLAYER_STATE3_IGNORE_CEILING_FLOOR_AND_WATER ;
                 sActionState = ENTORCH2_DAMAGE;
                 if (sAlpha == 255) {
                     Actor_SetColorFilter(&this->actor, COLORFILTER_COLORFLAG_RED, 255, COLORFILTER_BUFFLAG_OPA, 12);
@@ -624,10 +624,10 @@ void EnTorch2_Update(Actor* thisx, PlayState* play2) {
     // Handles being frozen by a deku nut
 
     if ((this->actor.colorFilterTimer == 0) || (this->actor.colorFilterParams & 0x4000)) {
-        this->stateFlags3 &= ~PLAYER_STATE3_2;
+        this->stateFlags3 &= ~PLAYER_STATE3_PAUSE_ACTION_FUNC ;
     } else {
-        this->stateFlags3 |= PLAYER_STATE3_2;
-        this->stateFlags1 &= ~PLAYER_STATE1_26;
+        this->stateFlags3 |= PLAYER_STATE3_PAUSE_ACTION_FUNC ;
+        this->stateFlags1 &= ~PLAYER_STATE1_TAKING_DAMAGE ;
         this->invincibilityTimer = 0;
         input->press.stick_x = input->press.stick_y = 0;
         /*! @bug

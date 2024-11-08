@@ -160,7 +160,7 @@ void EnGe3_ForceTalk(EnGe3* this, PlayState* play) {
         this->actionFunc = EnGe3_GiveCard;
     } else {
         if (!(this->unk_30C & 4)) {
-            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
             this->unk_30C |= 4;
         }
         this->actor.textId = 0x6004;

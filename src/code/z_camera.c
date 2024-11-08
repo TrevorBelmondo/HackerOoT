@@ -670,7 +670,7 @@ s32 Camera_GetWaterBoxBgCamIndex(Camera* camera, f32* waterY) {
         return -1;
     }
 
-    if (!(camera->player->stateFlags1 & PLAYER_STATE1_27)) {
+    if (!(camera->player->stateFlags1 & PLAYER_STATE1_SWIMMING )) {
         // player is not swimming
         *waterY = BGCHECK_Y_MIN;
         return -1;
@@ -1189,7 +1189,7 @@ s32 Camera_CalcAtForParallel(Camera* camera, VecGeo* arg1, f32 yOffset, f32* arg
     }
 
     if (camera->playerGroundY == camera->playerPosRot.pos.y || camera->player->actor.gravity > -0.1f ||
-        camera->player->stateFlags1 & PLAYER_STATE1_21) {
+        camera->player->stateFlags1 & PLAYER_STATE1_CLIMBING ) {
         *arg3 = Camera_LERPCeilF(playerPosRot->pos.y, *arg3, CAM_GLOBAL_43, 0.1f);
         phi_f20 = playerPosRot->pos.y - *arg3;
         playerToAtOffsetTarget.y -= phi_f20;
@@ -1295,7 +1295,7 @@ s32 Camera_CalcAtForLockOn(Camera* camera, VecGeo* eyeAtDir, Vec3f* targetPos, f
     playerToAtOffsetTarget.z += lookFromOffset.z;
 
     if (camera->playerGroundY == camera->playerPosRot.pos.y || camera->player->actor.gravity > -0.1f ||
-        camera->player->stateFlags1 & PLAYER_STATE1_21) {
+        camera->player->stateFlags1 & PLAYER_STATE1_CLIMBING ) {
         *yPosOffset = Camera_LERPCeilF(playerPosRot->pos.y, *yPosOffset, CAM_GLOBAL_43, 0.1f);
         yPosDelta = playerPosRot->pos.y - *yPosOffset;
         playerToAtOffsetTarget.y -= yPosDelta;
@@ -2228,7 +2228,7 @@ s32 Camera_Parallel1(Camera* camera) {
     }
 
     if (camera->playerGroundY == camera->playerPosRot.pos.y || camera->player->actor.gravity > -0.1f ||
-        camera->player->stateFlags1 & PLAYER_STATE1_21) {
+        camera->player->stateFlags1 & PLAYER_STATE1_CLIMBING ) {
         rwData->yTarget = playerPosRot->pos.y;
         sp6A = 0;
     } else {
@@ -3002,7 +3002,7 @@ s32 Camera_Battle1(Camera* camera) {
     }
 
     if (camera->playerGroundY == camera->playerPosRot.pos.y || camera->player->actor.gravity > -0.1f ||
-        camera->player->stateFlags1 & PLAYER_STATE1_21) {
+        camera->player->stateFlags1 & PLAYER_STATE1_CLIMBING ) {
         isOffGround = false;
         rwData->yPosOffset = playerPosRot->pos.y;
     } else {
@@ -3325,7 +3325,7 @@ s32 Camera_KeepOn1(Camera* camera) {
             rwData->unk_0C = NULL;
         cont:
             if (camera->playerGroundY == camera->playerPosRot.pos.y || camera->player->actor.gravity > -0.1f ||
-                camera->player->stateFlags1 & PLAYER_STATE1_21) {
+                camera->player->stateFlags1 & PLAYER_STATE1_CLIMBING ) {
                 rwData->unk_08 = playerPosRot->pos.y;
                 isOffGround = false;
             } else {
@@ -3775,7 +3775,7 @@ s32 Camera_KeepOn4(Camera* camera) {
                 roData->unk_04 = playerHeight * 1.6f * yNormal;
                 roData->unk_08 = -2.0f;
                 roData->unk_0C = 120.0f;
-                roData->unk_10 = player->stateFlags1 & PLAYER_STATE1_27 ? 0.0f : 20.0f;
+                roData->unk_10 = player->stateFlags1 & PLAYER_STATE1_SWIMMING  ? 0.0f : 20.0f;
                 roData->interfaceField = CAM_INTERFACE_FIELD(CAM_LETTERBOX_LARGE, CAM_HUD_VISIBILITY_NOTHING_ALT,
                                                              KEEPON4_FLAG_4 | KEEPON4_FLAG_1);
                 roData->unk_1E = 0x1E;
@@ -5091,7 +5091,7 @@ s32 Camera_Unique0(Camera* camera) {
         camera->animState++;
     }
 
-    if (player->stateFlags1 & PLAYER_STATE1_29) {
+    if (player->stateFlags1 & PLAYER_STATE1_IN_CUTSCENE ) {
         rwData->initialPos = playerPosRot->pos;
     }
 
@@ -5099,7 +5099,7 @@ s32 Camera_Unique0(Camera* camera) {
         if (rwData->animTimer > 0) {
             rwData->animTimer--;
             rwData->initialPos = playerPosRot->pos;
-        } else if (!(player->stateFlags1 & PLAYER_STATE1_29) &&
+        } else if (!(player->stateFlags1 & PLAYER_STATE1_IN_CUTSCENE ) &&
                    ((OLib_Vec3fDistXZ(&playerPosRot->pos, &rwData->initialPos) >= 10.0f) ||
                     CAMERA_CHECK_BTN(&D_8015BD7C->state.input[0], BTN_A) ||
                     CAMERA_CHECK_BTN(&D_8015BD7C->state.input[0], BTN_B) ||
@@ -5127,7 +5127,7 @@ s32 Camera_Unique0(Camera* camera) {
             rwData->initialPos = playerPosRot->pos;
         }
 
-        if (!(player->stateFlags1 & PLAYER_STATE1_29) &&
+        if (!(player->stateFlags1 & PLAYER_STATE1_IN_CUTSCENE ) &&
             ((0.001f < camera->xzSpeed) || CAMERA_CHECK_BTN(&D_8015BD7C->state.input[0], BTN_A) ||
              CAMERA_CHECK_BTN(&D_8015BD7C->state.input[0], BTN_B) ||
              CAMERA_CHECK_BTN(&D_8015BD7C->state.input[0], BTN_CLEFT) ||
@@ -5340,9 +5340,9 @@ s32 Camera_Unique9(Camera* camera) {
                     Camera_UpdateInterface(
                         CAM_INTERFACE_FIELD(CAM_LETTERBOX_IGNORE, rwData->curKeyFrame->initField, 0));
                 } else { // initField is a PlayerCsAction
-                    if ((camera->player->stateFlags1 & PLAYER_STATE1_27) &&
+                    if ((camera->player->stateFlags1 & PLAYER_STATE1_SWIMMING ) &&
                         (player->currentBoots != PLAYER_BOOTS_IRON)) {
-                        Player_SetCsAction(camera->play, camera->target, PLAYER_CSACTION_8);
+                        Player_SetCsAction(camera->play, camera->target, PLAYER_CSMODE_WAIT);
                         PRINTF("camera: demo: player demo set WAIT\n");
                     } else {
                         PRINTF("camera: demo: player demo set %d\n", rwData->curKeyFrame->initField);
@@ -5733,7 +5733,7 @@ s32 Camera_Unique9(Camera* camera) {
         // Set the player's position
         camera->player->actor.world.pos.x = rwData->playerPos.x;
         camera->player->actor.world.pos.z = rwData->playerPos.z;
-        if (camera->player->stateFlags1 & PLAYER_STATE1_27 && player->currentBoots != PLAYER_BOOTS_IRON) {
+        if (camera->player->stateFlags1 & PLAYER_STATE1_SWIMMING  && player->currentBoots != PLAYER_BOOTS_IRON) {
             camera->player->actor.world.pos.y = rwData->playerPos.y;
         }
     } else {
@@ -6613,9 +6613,9 @@ s32 Camera_Demo5(Camera* camera) {
 
     sDemo5PrevSfxFrame = camera->play->state.frames;
 
-    if (camera->player->stateFlags1 & PLAYER_STATE1_27 && (player->currentBoots != PLAYER_BOOTS_IRON)) {
+    if (camera->player->stateFlags1 & PLAYER_STATE1_SWIMMING  && (player->currentBoots != PLAYER_BOOTS_IRON)) {
         // swimming, and not iron boots
-        player->stateFlags1 |= PLAYER_STATE1_29;
+        player->stateFlags1 |= PLAYER_STATE1_IN_CUTSCENE ;
         // env frozen
         player->actor.freezeTimer = camera->timer;
     } else {
@@ -6624,14 +6624,14 @@ s32 Camera_Demo5(Camera* camera) {
             framesDiff = camera->play->state.frames - sDemo5PrevAction12Frame;
             if (player->stateFlags1 & PLAYER_STATE1_CARRYING_ACTOR) {
                 // holding object over head.
-                Player_SetCsActionWithHaltedActors(camera->play, camera->target, PLAYER_CSACTION_8);
+                Player_SetCsActionWithHaltedActors(camera->play, camera->target, PLAYER_CSMODE_WAIT);
             } else if (ABS(framesDiff) > 3000) {
-                Player_SetCsActionWithHaltedActors(camera->play, camera->target, PLAYER_CSACTION_12);
+                Player_SetCsActionWithHaltedActors(camera->play, camera->target, PLAYER_CSMODE_FIGHT_STANCE);
             } else {
-                Player_SetCsActionWithHaltedActors(camera->play, camera->target, PLAYER_CSACTION_69);
+                Player_SetCsActionWithHaltedActors(camera->play, camera->target, PLAYER_CSMODE_LOOK_AROUND_AND_AT_SELF_QUICKLY);
             }
         } else {
-            Player_SetCsActionWithHaltedActors(camera->play, camera->target, PLAYER_CSACTION_1);
+            Player_SetCsActionWithHaltedActors(camera->play, camera->target, PLAYER_CSMODE_IDLE);
         }
     }
 
@@ -6692,7 +6692,7 @@ s32 Camera_Demo6(Camera* camera) {
             FALLTHROUGH;
         case 1:
             if (stateTimers[camera->animState] < rwData->animTimer) {
-                Player_SetCsActionWithHaltedActors(camera->play, &camera->player->actor, PLAYER_CSACTION_8);
+                Player_SetCsActionWithHaltedActors(camera->play, &camera->player->actor, PLAYER_CSMODE_WAIT);
                 focusPosRot = Actor_GetWorld(camFocus);
                 rwData->atTarget.x = focusPosRot.pos.x;
                 rwData->atTarget.y = focusPosRot.pos.y - 20.0f;
@@ -7784,7 +7784,7 @@ s32 Camera_UpdateWater(Camera* camera) {
 
     // Process player diving in water
     if (camera->stateFlags & CAM_STATE_PLAYER_IN_WATER) {
-        if (player->stateFlags2 & PLAYER_STATE2_11) {
+        if (player->stateFlags2 & PLAYER_STATE2_ENABLE_DIVE_CAMERA_AND_TIMER ) {
             Camera_RequestSettingImpl(camera, CAM_SET_PIVOT_WATER_SURFACE,
                                       CAM_REQUEST_SETTING_PRESERVE_BG_CAM_INDEX | CAM_REQUEST_SETTING_IGNORE_PRIORITY);
             camera->stateFlags |= CAM_STATE_PLAYER_DIVING;
@@ -8309,10 +8309,10 @@ void Camera_Finish(Camera* camera) {
 
         if ((camera->parentCamId == CAM_ID_MAIN) && (camera->csId != 0)) {
             player->actor.freezeTimer = 0;
-            player->stateFlags1 &= ~PLAYER_STATE1_29;
+            player->stateFlags1 &= ~PLAYER_STATE1_IN_CUTSCENE ;
 
             if (player->csAction != PLAYER_CSACTION_NONE) {
-                Player_SetCsActionWithHaltedActors(camera->play, &player->actor, PLAYER_CSACTION_7);
+                Player_SetCsActionWithHaltedActors(camera->play, &player->actor, PLAYER_CSMODE_END);
                 PRINTF("camera: player demo end!!\n");
             }
 

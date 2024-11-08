@@ -651,7 +651,7 @@ void func_80083108(PlayState* play) {
         ((play->sceneId == SCENE_LON_LON_RANCH) && (gSaveContext.save.cutsceneIndex == 0xFFF0))) {
         gSaveContext.forceRisingButtonAlphas = false;
 
-        if ((player->stateFlags1 & PLAYER_STATE1_23) || (play->shootingGalleryStatus > 1) ||
+        if ((player->stateFlags1 & PLAYER_STATE1_RIDING_HORSE ) || (play->shootingGalleryStatus > 1) ||
             ((play->sceneId == SCENE_BOMBCHU_BOWLING_ALLEY) && Flags_GetSwitch(play, 0x38))) {
             if (gSaveContext.save.info.equips.buttonItems[0] != ITEM_NONE) {
                 gSaveContext.forceRisingButtonAlphas = true;
@@ -700,11 +700,11 @@ void func_80083108(PlayState* play) {
                     Interface_ChangeHudVisibilityMode(HUD_VISIBILITY_B);
                 } else if ((play->sceneId == SCENE_BOMBCHU_BOWLING_ALLEY) && Flags_GetSwitch(play, 0x38)) {
                     Interface_ChangeHudVisibilityMode(HUD_VISIBILITY_B);
-                } else if (player->stateFlags1 & PLAYER_STATE1_23) {
+                } else if (player->stateFlags1 & PLAYER_STATE1_RIDING_HORSE ) {
                     Interface_ChangeHudVisibilityMode(HUD_VISIBILITY_A_B_MINIMAP);
                 }
             } else {
-                if (player->stateFlags1 & PLAYER_STATE1_23) {
+                if (player->stateFlags1 & PLAYER_STATE1_RIDING_HORSE ) {
                     Interface_ChangeHudVisibilityMode(HUD_VISIBILITY_A_B_MINIMAP);
                 }
             }
@@ -784,7 +784,7 @@ void func_80083108(PlayState* play) {
                 }
 
                 Interface_ChangeHudVisibilityMode(HUD_VISIBILITY_ALL);
-            } else if ((player->stateFlags1 & PLAYER_STATE1_21) || (player->stateFlags2 & PLAYER_STATE2_CRAWLING)) {
+            } else if ((player->stateFlags1 & PLAYER_STATE1_CLIMBING ) || (player->stateFlags2 & PLAYER_STATE2_CRAWLING)) {
                 if (gSaveContext.buttonStatus[0] != BTN_DISABLED) {
                     gSaveContext.buttonStatus[0] = BTN_DISABLED;
                     gSaveContext.buttonStatus[1] = BTN_DISABLED;
@@ -794,7 +794,7 @@ void func_80083108(PlayState* play) {
                     Interface_ChangeHudVisibilityMode(HUD_VISIBILITY_ALL);
                 }
             } else if (GET_EVENTINF_HORSES_STATE() == EVENTINF_HORSES_STATE_1) {
-                if (player->stateFlags1 & PLAYER_STATE1_23) {
+                if (player->stateFlags1 & PLAYER_STATE1_RIDING_HORSE ) {
                     if ((gSaveContext.save.info.equips.buttonItems[0] != ITEM_NONE) &&
                         (gSaveContext.save.info.equips.buttonItems[0] != ITEM_BOW)) {
                         if (gSaveContext.save.info.inventory.items[SLOT_BOW] == ITEM_NONE) {
@@ -2931,7 +2931,7 @@ void Interface_DrawItemButtons(PlayState* play) {
                 (gSaveContext.hudVisibilityMode == HUD_VISIBILITY_NOTHING_ALT) ||
                 (gSaveContext.hudVisibilityMode == HUD_VISIBILITY_A_HEARTS_MAGIC_FORCE)) {
                 temp = 0;
-            } else if ((player->stateFlags1 & PLAYER_STATE1_21) ||
+            } else if ((player->stateFlags1 & PLAYER_STATE1_CLIMBING ) ||
                        (Player_GetEnvironmentalHazard(play) == PLAYER_ENV_HAZARD_UNDERWATER_FREE) ||
                        (player->stateFlags2 & PLAYER_STATE2_CRAWLING)) {
                 temp = 70;
@@ -3381,7 +3381,7 @@ void Interface_Draw(PlayState* play) {
             if (gSaveContext.save.info.equips.buttonItems[0] != ITEM_NONE) {
                 Interface_DrawItemIconTexture(play, interfaceCtx->iconItemSegment, 0);
 
-                if ((player->stateFlags1 & PLAYER_STATE1_23) || (play->shootingGalleryStatus > 1) ||
+                if ((player->stateFlags1 & PLAYER_STATE1_RIDING_HORSE ) || (play->shootingGalleryStatus > 1) ||
                     ((play->sceneId == SCENE_BOMBCHU_BOWLING_ALLEY) && Flags_GetSwitch(play, 0x38))) {
                     gDPPipeSync(OVERLAY_DISP++);
                     gDPSetCombineLERP(OVERLAY_DISP++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE,
@@ -3636,7 +3636,7 @@ void Interface_Draw(PlayState* play) {
         }
 
         if (!IS_PAUSED(&play->pauseCtx) && (play->gameOverCtx.state == GAMEOVER_INACTIVE) &&
-            (msgCtx->msgMode == MSGMODE_NONE) && !(player->stateFlags2 & PLAYER_STATE2_24) &&
+            (msgCtx->msgMode == MSGMODE_NONE) && !(player->stateFlags2 & PLAYER_STATE2_ATTEMPT_PLAY_OCARINA_FOR_ACTOR ) &&
             (play->transitionTrigger == TRANS_TRIGGER_OFF) && (play->transitionMode == TRANS_MODE_OFF) &&
             !Play_InCsMode(play) && (gSaveContext.minigameState != 1) && (play->shootingGalleryStatus <= 1) &&
             !((play->sceneId == SCENE_BOMBCHU_BOWLING_ALLEY) && Flags_GetSwitch(play, 0x38))) {
@@ -3937,7 +3937,7 @@ void Interface_Draw(PlayState* play) {
                                                 gSaveContext.subTimerState = SUBTIMER_STATE_RESPAWN;
                                                 gSaveContext.save.cutsceneIndex = 0;
                                                 Message_StartTextbox(play, 0x71B0, NULL);
-                                                Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+                                                Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
                                             } else {
                                                 sSubTimerStateTimer = 40;
                                                 gSaveContext.subTimerState = SUBTIMER_STATE_STOP;
@@ -4256,7 +4256,7 @@ void Interface_Update(PlayState* play) {
     Health_UpdateMeter(play);
 
     if ((gSaveContext.timerState >= TIMER_STATE_ENV_HAZARD_MOVE) && !IS_PAUSED(&play->pauseCtx) &&
-        (msgCtx->msgMode == MSGMODE_NONE) && !(player->stateFlags2 & PLAYER_STATE2_24) &&
+        (msgCtx->msgMode == MSGMODE_NONE) && !(player->stateFlags2 & PLAYER_STATE2_ATTEMPT_PLAY_OCARINA_FOR_ACTOR ) &&
         (play->transitionTrigger == TRANS_TRIGGER_OFF) && (play->transitionMode == TRANS_MODE_OFF) &&
         !Play_InCsMode(play)) {}
 

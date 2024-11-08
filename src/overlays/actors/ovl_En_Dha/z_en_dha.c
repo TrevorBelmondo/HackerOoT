@@ -228,7 +228,7 @@ void EnDha_Wait(EnDha* this, PlayState* play) {
                 this->timer += 0x1194;
                 this->limbAngleY = Math_SinS(this->timer) * 1820.0f;
 
-                if (!(player->stateFlags2 & PLAYER_STATE2_7)) {
+                if (!(player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY )) {
                     this->unk_1CC = 0;
                     EnDha_SetupTakeDamage(this);
                     return;
@@ -246,13 +246,13 @@ void EnDha_Wait(EnDha* this, PlayState* play) {
 #if OOT_VERSION < NTSC_1_1
             // Empty
 #elif OOT_VERSION < PAL_1_0
-            if ((player->stateFlags2 & PLAYER_STATE2_7) && (&this->actor == player->actor.parent)) {
-                player->stateFlags2 &= ~PLAYER_STATE2_7;
+            if ((player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) && (&this->actor == player->actor.parent)) {
+                player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
                 player->actor.parent = NULL;
             }
 #else
-            if ((player->stateFlags2 & PLAYER_STATE2_7) && (&this->actor == player->actor.parent)) {
-                player->stateFlags2 &= ~PLAYER_STATE2_7;
+            if ((player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) && (&this->actor == player->actor.parent)) {
+                player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
                 player->actor.parent = NULL;
                 player->av2.actionVar2 = 200;
             }
@@ -292,8 +292,8 @@ void EnDha_Wait(EnDha* this, PlayState* play) {
             this->limbAngleX[1] *= -2;
         }
     } else {
-        if ((player->stateFlags2 & PLAYER_STATE2_7) && (&this->actor == player->actor.parent)) {
-            player->stateFlags2 &= ~PLAYER_STATE2_7;
+        if ((player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) && (&this->actor == player->actor.parent)) {
+            player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
             player->actor.parent = NULL;
 #if OOT_VERSION >= PAL_1_0
             player->av2.actionVar2 = 200;
@@ -315,8 +315,8 @@ void EnDha_SetupTakeDamage(EnDha* this) {
 void EnDha_TakeDamage(EnDha* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
 
-    if ((player->stateFlags2 & PLAYER_STATE2_7) && (&this->actor == player->actor.parent)) {
-        player->stateFlags2 &= ~PLAYER_STATE2_7;
+    if ((player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) && (&this->actor == player->actor.parent)) {
+        player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
         player->actor.parent = NULL;
 #if OOT_VERSION >= PAL_1_0
         player->av2.actionVar2 = 200;
@@ -355,8 +355,8 @@ void EnDha_Die(EnDha* this, PlayState* play) {
     Vec3f vec;
     Player* player = GET_PLAYER(play);
 
-    if ((player->stateFlags2 & PLAYER_STATE2_7) && (&this->actor == player->actor.parent)) {
-        player->stateFlags2 &= ~PLAYER_STATE2_7;
+    if ((player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) && (&this->actor == player->actor.parent)) {
+        player->stateFlags2 &= ~PLAYER_STATE2_RESTRAINED_BY_ENEMY ;
         player->actor.parent = NULL;
 #if OOT_VERSION >= PAL_1_0
         player->av2.actionVar2 = 200;

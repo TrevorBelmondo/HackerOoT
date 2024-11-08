@@ -214,7 +214,7 @@ void BgDyYoseizo_CheckMagicAcquired(BgDyYoseizo* this, PlayState* play) {
                 return;
             }
         }
-        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
         this->actionFunc = BgDyYoseizo_ChooseType;
     }
 }
@@ -229,12 +229,12 @@ void BgDyYoseizo_ChooseType(BgDyYoseizo* this, PlayState* play) {
     }
 
     if (play->msgCtx.ocarinaMode != OCARINA_MODE_04) {
-        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
         return;
     }
 #endif
 
-    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
     // "Mode"
     PRINTF(VT_FGCOL(YELLOW) "☆☆☆☆☆ もうど ☆☆☆☆☆ %d\n" VT_RST, play->msgCtx.ocarinaMode);
     givingReward = false;
@@ -351,14 +351,14 @@ void BgDyYoseizo_SetupSpinGrow_NoReward(BgDyYoseizo* this, PlayState* play) {
 
     Actor_PlaySfx(&this->actor, NA_SE_VO_FR_LAUGH_0);
 #if OOT_VERSION >= NTSC_1_1
-    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
 #endif
     this->actionFunc = BgDyYoseizo_SpinGrow_NoReward;
 }
 
 void BgDyYoseizo_SpinGrow_NoReward(BgDyYoseizo* this, PlayState* play) {
 #if OOT_VERSION >= NTSC_1_1
-    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
 #endif
     Math_ApproachF(&this->actor.world.pos.y, this->grownHeight, this->heightFraction, 100.0f);
     Math_ApproachF(&this->scale, 0.035f, this->scaleFraction, 0.005f);
@@ -386,7 +386,7 @@ void BgDyYoseizo_CompleteSpinGrow_NoReward(BgDyYoseizo* this, PlayState* play) {
     f32 curFrame = this->skelAnime.curFrame;
 
 #if OOT_VERSION >= NTSC_1_1
-    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
 #endif
 
     if ((this->frameCount * 1273.0f) <= this->bobTimer) {
@@ -402,7 +402,7 @@ void BgDyYoseizo_CompleteSpinGrow_NoReward(BgDyYoseizo* this, PlayState* play) {
 
 void BgDyYoseizo_SetupGreetPlayer_NoReward(BgDyYoseizo* this, PlayState* play) {
 #if OOT_VERSION >= NTSC_1_1
-    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
 #endif
 
     if (play->sceneId == SCENE_GREAT_FAIRYS_FOUNTAIN_MAGIC) {
@@ -424,7 +424,7 @@ void BgDyYoseizo_SetupGreetPlayer_NoReward(BgDyYoseizo* this, PlayState* play) {
 
 void BgDyYoseizo_GreetPlayer_NoReward(BgDyYoseizo* this, PlayState* play) {
 #if OOT_VERSION >= NTSC_1_1
-    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
 #endif
     this->bobTimer = this->skelAnime.curFrame * 1273.0f;
 
@@ -593,7 +593,7 @@ void BgDyYoseizo_Vanish(BgDyYoseizo* this, PlayState* play) {
     Actor* findOcarinaSpot;
 
     if (this->vanishTimer == 0) {
-        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
         play->envCtx.lightSettingOverride = 0;
         findOcarinaSpot = play->actorCtx.actorLists[ACTORCAT_PROP].head;
 
@@ -615,7 +615,7 @@ void BgDyYoseizo_SetupSpinGrow_Reward(BgDyYoseizo* this, PlayState* play) {
     if (play->csCtx.state != CS_STATE_IDLE) {
         if ((play->csCtx.actorCues[0] != NULL) && (play->csCtx.actorCues[0]->id == 2)) {
             this->actor.draw = BgDyYoseizo_Draw;
-            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
             this->finishedSpinGrow = false;
 
             if (play->sceneId == SCENE_GREAT_FAIRYS_FOUNTAIN_MAGIC) {

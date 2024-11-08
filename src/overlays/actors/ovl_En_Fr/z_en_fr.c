@@ -610,7 +610,7 @@ s32 EnFr_SetupJumpingUp(EnFr* this, s32 frogIndex) {
 void EnFr_Idle(EnFr* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
 
-    if (player->stateFlags2 & PLAYER_STATE2_25) {
+    if (player->stateFlags2 & PLAYER_STATE2_PLAYING_OCARINA_FOR_ACTOR ) {
         if (play->msgCtx.ocarinaMode == OCARINA_MODE_04) {
             play->msgCtx.ocarinaMode = OCARINA_MODE_00;
         }
@@ -624,7 +624,7 @@ void EnFr_Idle(EnFr* this, PlayState* play) {
         this->reward = GI_NONE;
         this->actionFunc = EnFr_Activate;
     } else if (EnFr_IsAboveAndWithin30DistXZ(player, this)) {
-        player->unk_6A8 = &this->actor;
+        player->ocarinaActor = &this->actor;
     }
 }
 

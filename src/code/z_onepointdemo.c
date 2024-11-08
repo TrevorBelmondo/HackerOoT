@@ -194,7 +194,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_801208EC[3] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0x0101,
                     1,
                     0,
@@ -291,7 +291,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_801209B4[4] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0x0101,
                     1,
                     0,
@@ -302,7 +302,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_4, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0100,
                     29,
                     0,
@@ -426,7 +426,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0442,
                     10,
                     0,
@@ -476,7 +476,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_80120B94[11] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x2142,
                     1,
                     0,
@@ -624,7 +624,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_80120D4C[7] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x2142,
                     1,
                     0,
@@ -727,7 +727,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_80120E64[8] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_1, true, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x2142,
                     20,
                     0,
@@ -831,7 +831,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_80120FA4[6] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x2143,
                     30,
                     0,
@@ -913,7 +913,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_80121094[3] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0x2101,
                     20,
                     0,
@@ -924,7 +924,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_1, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x2101,
                     50,
                     0,
@@ -962,7 +962,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_8012110C[3] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, true, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_5),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_SURPRISED),
                     0x2142,
                     1,
                     0,
@@ -1006,7 +1006,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_80121184[2] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_3, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0101,
                     40,
                     0,
@@ -1030,7 +1030,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_801211D4[2] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0x0101,
                     50,
                     0,
@@ -1092,7 +1092,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_80121224[6] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x4141,
                     2,
                     0,
@@ -1114,7 +1114,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_4, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_52),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_DESPERATE_LOOKING_AT_ZELDAS_CRYSTAL),
                     0x4104,
                     80,
                     0,
@@ -1125,7 +1125,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0000,
                     20,
                     0,
@@ -1159,7 +1159,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             };
             Actor* rideActor = player->rideActor;
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             if (rideActor != NULL) {
                 rideActor->freezeTimer = 180;
             }
@@ -1175,7 +1175,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_80121314[1] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0x4141,
                     1000,
                     0,
@@ -1186,7 +1186,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
             };
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
 
             csInfo->keyFrames = D_80121314;
             csInfo->keyFrameCount = ARRAY_COUNT(D_80121314);
@@ -1199,7 +1199,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_8012133C[3] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0141,
                     40,
                     0,
@@ -1234,7 +1234,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
 
             D_8012133C[0].eyeTargetInit = actor->world.pos;
             D_8012133C[0].eyeTargetInit.y = player->actor.world.pos.y + 40.0f;
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
 
             csInfo->keyFrames = D_8012133C;
             csInfo->keyFrameCount = ARRAY_COUNT(D_8012133C);
@@ -1254,7 +1254,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             spB4 = OnePointCutscene_AddVecGeoToVec3f(&spC0, &spD0);
             Play_RequestCameraSetting(play, subCamId, CAM_SET_FREE2);
             Play_SetCameraAtEye(play, subCamId, &spC0, &spB4);
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             subCam->roll = 0;
             subCam->fov = 50.0f;
             if (subCam->childCamId != CAM_ID_MAIN) {
@@ -1266,7 +1266,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_801213B4[5] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0xC2C2,
                     40,
                     0,
@@ -1277,7 +1277,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_11, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0xC2C2,
                     120,
                     0,
@@ -1288,7 +1288,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_83),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_START_LOOK_UP_DEFENSE),
                     0xC2C2,
                     30,
                     0,
@@ -1299,7 +1299,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_4, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_69),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_LOOK_AROUND_AND_AT_SELF_QUICKLY),
                     0x4222,
                     30,
                     0,
@@ -1327,7 +1327,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             if (Rand_ZeroOne() < 0.0f) {
                 D_801213B4[3].eyeTargetInit.x = -D_801213B4[3].eyeTargetInit.x;
             }
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
 
             csInfo->keyFrames = D_801213B4;
             csInfo->keyFrameCount = ARRAY_COUNT(D_801213B4);
@@ -1361,7 +1361,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_8012147C[4] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0101,
                     40,
                     0,
@@ -1372,7 +1372,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0142,
                     1,
                     0,
@@ -1383,7 +1383,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_3, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0x0142,
                     89,
                     -4,
@@ -1423,14 +1423,14 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             Play_SetCameraAtEye(play, subCamId, &spC0, &spB4);
             subCam->roll = 6;
             subCam->fov = 75.0f;
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             break;
 
         case 3040: {
             static OnePointCsFull D_8012151C[2] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0101,
                     29,
                     0,
@@ -1452,7 +1452,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
             };
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             D_8012151C[0].timerInit = timer - 1;
 
             csInfo->keyFrames = D_8012151C;
@@ -1466,7 +1466,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_8012156C[2] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, true),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_77),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_LOOK_UP_STARTLED),
                     0x4242,
                     1,
                     0,
@@ -1503,7 +1503,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrameCount = ARRAY_COUNT(D_8012156C);
 
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             break;
         }
 
@@ -1535,7 +1535,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_801215E4[10] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0x4141,
                     20,
                     0,
@@ -1546,7 +1546,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0101,
                     1,
                     4,
@@ -1579,7 +1579,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_9),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_TURN_AROUND_SURPRISED_LONG),
                     0x0101,
                     40,
                     -5,
@@ -1590,7 +1590,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0101,
                     1,
                     0,
@@ -1661,7 +1661,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_80121774[4] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0x0101,
                     1,
                     -2,
@@ -1672,7 +1672,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_1, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0142,
                     39,
                     2,
@@ -1683,7 +1683,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_1, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_5),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_SURPRISED),
                     0x0121,
                     20,
                     0,
@@ -1716,7 +1716,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_80121814[4] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_76),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_STARE_DOWN_STARTLED),
                     0x0101,
                     5,
                     0,
@@ -1760,7 +1760,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
             };
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
 
             csInfo->keyFrames = D_80121814;
             csInfo->keyFrameCount = ARRAY_COUNT(D_80121814);
@@ -1778,7 +1778,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             Play_SetCameraAtEye(play, subCamId, &spC0, &spB4);
             subCam->roll = 0;
             subCam->fov = 70.0f;
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             break;
 
         case 3380:
@@ -1811,7 +1811,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_801218B4;
             csInfo->keyFrameCount = ARRAY_COUNT(D_801218B4);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
 
             i = Quake_Request(subCam, QUAKE_TYPE_1);
@@ -1850,14 +1850,14 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_80121904;
             csInfo->keyFrameCount = ARRAY_COUNT(D_80121904);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             break;
         }
 
         case 3050: {
             Play_RequestCameraSetting(play, subCamId, CAM_SET_CS_3);
-            Player_SetCsActionWithHaltedActors(play, &player->actor, PLAYER_CSACTION_5);
+            Player_SetCsActionWithHaltedActors(play, &player->actor, PLAYER_CSMODE_SURPRISED);
             OnePointCutscene_SetCsCamPoints(subCam, D_80120304 | 0x2000, D_80120300, D_8012013C, D_8012021C);
 #if OOT_VERSION >= PAL_1_0
             Sfx_PlaySfxCentered(NA_SE_SY_CORRECT_CHIME);
@@ -1977,7 +1977,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             subCam->stateFlags |= CAM_STATE_CHECK_WATER;
             csInfo->keyFrameCount = ARRAY_COUNT(D_80121954[0]);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             break;
         }
@@ -1986,7 +1986,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_80121A44[12] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, true, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_5),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_SURPRISED),
                     0x2121,
                     10,
                     0,
@@ -1997,7 +1997,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_2, true, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x4242,
                     30,
                     0,
@@ -2019,7 +2019,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, true, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_5),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_SURPRISED),
                     0x2222,
                     40,
                     5,
@@ -2030,7 +2030,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, true, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x4242,
                     40,
                     5,
@@ -2074,7 +2074,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, true, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x2242,
                     40,
                     0,
@@ -2085,7 +2085,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_11, true, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x22C2,
                     140,
                     0,
@@ -2121,7 +2121,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_80121A44;
             csInfo->keyFrameCount = ARRAY_COUNT(D_80121A44);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             subCam->stateFlags |= CAM_STATE_CHECK_WATER;
             break;
@@ -2131,7 +2131,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_80121C24[7] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_5),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_SURPRISED),
                     0x0101,
                     1,
                     0,
@@ -2153,7 +2153,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0x0101,
                     40,
                     4,
@@ -2230,7 +2230,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             Play_SetCameraAtEye(play, subCamId, &spC0, &spB4);
             subCam->roll = 0x50;
             subCam->fov = 55.0f;
-            Player_SetCsAction(play, &player->actor, PLAYER_CSACTION_8);
+            Player_SetCsAction(play, &player->actor, PLAYER_CSMODE_WAIT);
             break;
 
         case 3170:
@@ -2247,7 +2247,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             Play_CopyCamera(play, CAM_ID_MAIN, subCamId);
             subCam->roll = -1;
             subCam->fov = 55.0f;
-            Player_SetCsAction(play, actor, PLAYER_CSACTION_1);
+            Player_SetCsAction(play, actor, PLAYER_CSMODE_IDLE);
             break;
 
         case 3160:
@@ -2261,7 +2261,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             Play_SetCameraAtEye(play, subCamId, &spC0, &spB4);
             subCam->roll = 0;
             subCam->fov = 55.0f;
-            Player_SetCsAction(play, &player->actor, PLAYER_CSACTION_8);
+            Player_SetCsAction(play, &player->actor, PLAYER_CSMODE_WAIT);
             break;
 
         case 3180:
@@ -2276,13 +2276,13 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             Play_SetCameraAtEye(play, subCamId, &spC0, &spB4);
             subCam->roll = 0;
             subCam->fov = 60.0f;
-            Player_SetCsAction(play, actor, PLAYER_CSACTION_1);
+            Player_SetCsAction(play, actor, PLAYER_CSMODE_IDLE);
             break;
 
         case 3190:
             Play_RequestCameraSetting(play, subCamId, CAM_SET_FOREST_DEFEAT_POE);
             Camera_RequestMode(mainCam, CAM_MODE_NORMAL);
-            Player_SetCsAction(play, actor, PLAYER_CSACTION_12);
+            Player_SetCsAction(play, actor, PLAYER_CSMODE_FIGHT_STANCE);
             break;
 
         case 3230:
@@ -2296,7 +2296,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             Play_SetCameraAtEye(play, subCamId, &spC0, &spB4);
             subCam->roll = 0x1E;
             subCam->fov = 75.0f;
-            Player_SetCsAction(play, &player->actor, PLAYER_CSACTION_8);
+            Player_SetCsAction(play, &player->actor, PLAYER_CSMODE_WAIT);
             spA0 = Actor_GetWorldPosShapeRot(actor);
             sp8C = Actor_GetFocus(&player->actor);
             spC0.x = sp8C.pos.x;
@@ -2326,7 +2326,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             Play_SetCameraAtEye(play, subCamId, &spC0, &spB4);
             subCam->roll = 0;
             subCam->fov = 45.0f;
-            Player_SetCsAction(play, &player->actor, PLAYER_CSACTION_8);
+            Player_SetCsAction(play, &player->actor, PLAYER_CSMODE_WAIT);
             break;
 
         case 3220:
@@ -2343,7 +2343,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             subCam->roll = 0;
             subCam->fov = 75.0f;
             player->actor.shape.rot.y = player->actor.world.rot.y = player->yaw = spD0.yaw + 0x7FFF;
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             break;
 
         case 3240: {
@@ -2388,14 +2388,14 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_80121D3C;
             csInfo->keyFrameCount = ARRAY_COUNT(D_80121D3C);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             break;
         }
 
         case 6001:
             Play_RequestCameraSetting(play, subCamId, CAM_SET_CS_3);
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             spA0 = Actor_GetWorld(actor);
             if (spA0.pos.z > -750.0f) {
                 OnePointCutscene_SetCsCamPoints(subCam, D_801208E8, D_801208E4, D_801206A0, D_80120820);
@@ -2411,7 +2411,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
 
         case 3400:
             Play_RequestCameraSetting(play, subCamId, CAM_SET_CS_3);
-            Player_SetCsAction(play, &player->actor, PLAYER_CSACTION_8);
+            Player_SetCsAction(play, &player->actor, PLAYER_CSMODE_WAIT);
             OnePointCutscene_SetCsCamPoints(subCam, D_8012069C | 0x2000, D_80120698, D_801204D4, D_801205B4);
             OnePointCutscene_Vec3sToVec3f(&mainCam->eye, &D_801205B4[D_80120694 - 2].pos);
             OnePointCutscene_Vec3sToVec3f(&mainCam->at, &D_801204D4[D_80120694 - 2].pos);
@@ -2470,7 +2470,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_57),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_LOOK_AROUND_SURPRISED),
                     0x2121,
                     1,
                     8,
@@ -2492,7 +2492,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_9, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_56),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_SHIELD_EYES_WITH_HAND),
                     0x2121,
                     149,
                     -20,
@@ -2530,14 +2530,14 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_80121DB4;
             csInfo->keyFrameCount = ARRAY_COUNT(D_80121DB4);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             break;
         }
 
         case 3310:
             Play_RequestCameraSetting(play, subCamId, CAM_SET_FIRE_STAIRCASE);
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Play_CopyCamera(play, subCamId, CAM_ID_MAIN);
 
             i = Quake_Request(subCam, QUAKE_TYPE_1);
@@ -2550,7 +2550,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_80121F1C[4] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0x0101,
                     10,
                     0,
@@ -2572,7 +2572,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_1, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_2),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_TURN_AROUND_SURPRISED_SHORT),
                     0x2121,
                     23,
                     0,
@@ -2667,7 +2667,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_80121FBC;
             csInfo->keyFrameCount = ARRAY_COUNT(D_80121FBC);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
 
             i = Quake_Request(subCam, QUAKE_TYPE_3);
@@ -2703,7 +2703,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_1, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x21A1,
                     10,
                     0,
@@ -2717,7 +2717,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_8012205C;
             csInfo->keyFrameCount = ARRAY_COUNT(D_8012205C);
 
-            Player_SetCsAction(play, &player->actor, PLAYER_CSACTION_8);
+            Player_SetCsAction(play, &player->actor, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             break;
         }
@@ -2726,7 +2726,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_801220D4[5] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0101,
                     5,
                     0,
@@ -2792,7 +2792,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 D_801220D4[1].eyeTargetInit.y = 80.0f;
                 D_801220D4[1].eyeTargetInit.x = -D_801220D4[1].eyeTargetInit.x;
             }
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
 
             csInfo->keyFrames = D_801220D4;
             csInfo->keyFrameCount = ARRAY_COUNT(D_801220D4);
@@ -2885,7 +2885,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_8012219C;
             csInfo->keyFrameCount = ARRAY_COUNT(D_8012219C);
 
-            Player_SetCsAction(play, &player->actor, PLAYER_CSACTION_8);
+            Player_SetCsAction(play, &player->actor, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             break;
         }
@@ -2952,7 +2952,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_801222B4;
             csInfo->keyFrameCount = ARRAY_COUNT(D_801222B4);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
 
             i = Quake_Request(subCam, QUAKE_TYPE_1);
@@ -2991,7 +2991,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_8012237C;
             csInfo->keyFrameCount = ARRAY_COUNT(D_8012237C);
 
-            Player_SetCsAction(play, &player->actor, PLAYER_CSACTION_8);
+            Player_SetCsAction(play, &player->actor, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
 
             i = Quake_Request(subCam, QUAKE_TYPE_1);
@@ -3074,9 +3074,9 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_801223CC;
             csInfo->keyFrameCount = ARRAY_COUNT(D_801223CC);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
-            player->stateFlags1 |= PLAYER_STATE1_29;
+            player->stateFlags1 |= PLAYER_STATE1_IN_CUTSCENE ;
             player->actor.freezeTimer = 90;
 
             i = Quake_Request(subCam, QUAKE_TYPE_1);
@@ -3170,7 +3170,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_801224BC;
             csInfo->keyFrameCount = ARRAY_COUNT(D_801224BC);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
 
             i = Quake_Request(subCam, QUAKE_TYPE_1);
@@ -3184,7 +3184,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_801225D4[5] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0x0101,
                     1,
                     0,
@@ -3195,7 +3195,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_1, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_59),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_STARTLED_BY_GORONS_FALLING),
                     0x0101,
                     60,
                     4,
@@ -3217,7 +3217,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0x2323,
                     2,
                     0,
@@ -3244,7 +3244,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
 
             player->actor.shape.rot.y = player->actor.world.rot.y = player->yaw = 0x3FFC;
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             break;
         }
 
@@ -3288,7 +3288,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_8012269C;
             csInfo->keyFrameCount = ARRAY_COUNT(D_8012269C);
 
-            Player_SetCsAction(play, &player->actor, PLAYER_CSACTION_8);
+            Player_SetCsAction(play, &player->actor, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             break;
         }
@@ -3341,7 +3341,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
             };
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             D_80122714[1].timerInit = 80;
             csInfo->keyFrames = D_80122714;
             csInfo->keyFrameCount = ARRAY_COUNT(D_80122714);
@@ -3432,7 +3432,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_801228A4[5] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0101,
                     20,
                     5,
@@ -3454,7 +3454,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_8),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_WAIT),
                     0x0101,
                     90,
                     2,
@@ -3490,7 +3490,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_801228A4;
             csInfo->keyFrameCount = ARRAY_COUNT(D_801228A4);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Camera_RequestMode(mainCam, CAM_MODE_NORMAL);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             break;
@@ -3547,7 +3547,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_8012296C;
             csInfo->keyFrameCount = ARRAY_COUNT(D_8012296C);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Camera_RequestMode(mainCam, CAM_MODE_NORMAL);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             break;
@@ -3582,7 +3582,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_80122A0C;
             csInfo->keyFrameCount = ARRAY_COUNT(D_80122A0C);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Camera_RequestMode(mainCam, CAM_MODE_NORMAL);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             break;
@@ -3683,7 +3683,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_80122A5C;
             csInfo->keyFrameCount = ARRAY_COUNT(D_80122A5C);
 
-            Player_SetCsAction(play, &player->actor, PLAYER_CSACTION_8);
+            Player_SetCsAction(play, &player->actor, PLAYER_CSMODE_WAIT);
             Camera_RequestMode(mainCam, CAM_MODE_NORMAL);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             break;
@@ -3729,7 +3729,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_80122B9C;
             csInfo->keyFrameCount = ARRAY_COUNT(D_80122B9C);
 
-            Player_SetCsAction(play, &player->actor, PLAYER_CSACTION_8);
+            Player_SetCsAction(play, &player->actor, PLAYER_CSMODE_WAIT);
             Camera_RequestMode(mainCam, CAM_MODE_NORMAL);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             break;
@@ -3796,7 +3796,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrameCount = ARRAY_COUNT(D_80122C3C);
 
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
-            Player_SetCsAction(play, &player->actor, PLAYER_CSACTION_1);
+            Player_SetCsAction(play, &player->actor, PLAYER_CSMODE_IDLE);
 
             i = Quake_Request(subCam, QUAKE_TYPE_3);
             Quake_SetSpeed(i, 12000);
@@ -3823,7 +3823,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             csInfo->keyFrames = D_80122C8C;
             csInfo->keyFrameCount = ARRAY_COUNT(D_80122C8C);
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             Play_InitCameraDataUsingPlayer(play, subCamId, player, CAM_SET_CS_C);
             break;
         }
@@ -3854,7 +3854,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
             };
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             D_80122CB4[1].timerInit = timer - 5;
 
             csInfo->keyFrames = D_80122CB4;
@@ -3890,7 +3890,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
             };
 
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
             D_80122D04[1].timerInit = timer - 10;
 
             csInfo->keyFrames = D_80122D04;
@@ -4037,7 +4037,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                     },
                     {
                         ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_11, false, false),
-                        ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                        ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                         0x4343,
                         160,
                         10,
@@ -4116,7 +4116,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                     },
                     {
                         ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_11, false, false),
-                        ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                        ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                         0x4343,
                         160,
                         -10,
@@ -4340,7 +4340,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
 
                 D_801231B4[0].eyeTargetInit.z = D_801231B4[1].eyeTargetInit.z = !LINK_IS_ADULT ? 100.0f : 120.0f;
 
-                if (player->stateFlags1 & PLAYER_STATE1_27) {
+                if (player->stateFlags1 & PLAYER_STATE1_SWIMMING ) {
                     D_801231B4[2].atTargetInit.z = 0.0f;
                 }
                 spA0 = Actor_GetWorldPosShapeRot(&player->actor);
@@ -4399,7 +4399,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_801232A4[1] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_69),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_LOOK_AROUND_AND_AT_SELF_QUICKLY),
                     0x0101,
                     9999,
                     0,
@@ -4557,7 +4557,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_8012345C[4] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_1, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x4242,
                     40,
                     0,
@@ -4568,7 +4568,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_4, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_77),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_LOOK_UP_STARTLED),
                     0x4242,
                     40,
                     0,
@@ -4579,7 +4579,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_4, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x2121,
                     10,
                     0,
@@ -4612,7 +4612,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_801234FC[5] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_1, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_5),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_SURPRISED),
                     0x0441,
                     10,
                     0,
@@ -4634,7 +4634,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
                 },
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_16, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x0000,
                     1,
                     0,
@@ -4678,7 +4678,7 @@ s32 OnePointCutscene_SetInfo(PlayState* play, s16 subCamId, s16 csId, Actor* act
             static OnePointCsFull D_801235C4[5] = {
                 {
                     ONEPOINT_CS_ACTION(ONEPOINT_CS_ACTION_ID_15, false, false),
-                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSACTION_1),
+                    ONEPOINT_CS_INIT_FIELD_PLAYER_CS(PLAYER_CSMODE_IDLE),
                     0x4141,
                     1,
                     0,

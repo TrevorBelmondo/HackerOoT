@@ -2251,7 +2251,7 @@ void Fishing_UpdateLure(Fishing* this, PlayState* play) {
 
             Math_ApproachF(&sRodLineSpooled, 195.0f, 1.0f, 1.0f);
 
-            if (player->stateFlags1 & PLAYER_STATE1_27) {
+            if (player->stateFlags1 & PLAYER_STATE1_SWIMMING ) {
                 sRodCastTimer = 0;
                 player->unk_860 = 0;
             }
@@ -5453,7 +5453,7 @@ void Fishing_UpdateOwner(Actor* thisx, PlayState* play2) {
             sSubCamId = Play_CreateSubCamera(play);
             Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STAT_WAIT);
             Play_ChangeCameraStatus(play, sSubCamId, CAM_STAT_ACTIVE);
-            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_5);
+            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_SURPRISED);
             mainCam = Play_GetCamera(play, CAM_ID_MAIN);
             sSubCamEye.x = mainCam->eye.x;
             sSubCamEye.y = mainCam->eye.y;
@@ -5478,7 +5478,7 @@ void Fishing_UpdateOwner(Actor* thisx, PlayState* play2) {
                 mainCam->at = sSubCamAt;
                 Play_ReturnToMainCam(play, sSubCamId, 0);
                 Cutscene_StopManual(play, &play->csCtx);
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
                 sFishingPlayerCinematicState = 0;
 
                 sSubCamId = SUB_CAM_ID_DONE;
@@ -5493,7 +5493,7 @@ void Fishing_UpdateOwner(Actor* thisx, PlayState* play2) {
             sSubCamId = Play_CreateSubCamera(play);
             Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STAT_WAIT);
             Play_ChangeCameraStatus(play, sSubCamId, CAM_STAT_ACTIVE);
-            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_5);
+            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_SURPRISED);
             mainCam = Play_GetCamera(play, CAM_ID_MAIN);
             sSubCamEye.x = mainCam->eye.x;
             sSubCamEye.y = mainCam->eye.y;
@@ -5511,7 +5511,7 @@ void Fishing_UpdateOwner(Actor* thisx, PlayState* play2) {
             if ((sFishingCinematicTimer == 0) && Message_ShouldAdvance(play)) {
                 sFishingPlayerCinematicState = 22;
                 sFishingCinematicTimer = 40;
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_28);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_GET_ITEM);
                 sSinkingLureHeldY = 0.0f;
             }
             break;
@@ -5580,7 +5580,7 @@ void Fishing_UpdateOwner(Actor* thisx, PlayState* play2) {
                         mainCam->at = sSubCamAt;
                         Play_ReturnToMainCam(play, sSubCamId, 0);
                         Cutscene_StopManual(play, &play->csCtx);
-                        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+                        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
                         sFishingPlayerCinematicState = 0;
 
                         sSubCamId = SUB_CAM_ID_DONE;

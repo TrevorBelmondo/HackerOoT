@@ -925,7 +925,7 @@ void EnGeldB_SpinAttack(EnGeldB* this, PlayState* play) {
             if (&player->actor == this->swordCollider.base.at) {
                 Actor_SetPlayerKnockbackLargeNoDamage(play, &this->actor, 6.0f, this->actor.yawTowardsPlayer, 6.0f);
                 this->spinAttackState = 2;
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_24);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_KNOCKED_TO_GROUND);
                 Message_StartTextbox(play, 0x6003, &this->actor);
                 this->timer = 30;
                 this->actor.speed = 0.0f;

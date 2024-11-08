@@ -134,7 +134,7 @@ void EnHeishi3_StandSentinelInGrounds(EnHeishi3* this, PlayState* play) {
         Message_StartTextbox(play, 0x702D, &this->actor);
         Sfx_PlaySfxCentered(NA_SE_SY_FOUND);
         PRINTF(VT_FGCOL(GREEN) "☆☆☆☆☆ 発見！ ☆☆☆☆☆ \n" VT_RST); // "Discovered!"
-        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
 #if OOT_PAL_N64
         this->actor.flags |= ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_4;
 #endif
@@ -165,7 +165,7 @@ void EnHeishi3_StandSentinelInCastle(EnHeishi3* this, PlayState* play) {
         Message_StartTextbox(play, 0x702D, &this->actor);
         Sfx_PlaySfxCentered(NA_SE_SY_FOUND);
         PRINTF(VT_FGCOL(GREEN) "☆☆☆☆☆ 発見！ ☆☆☆☆☆ \n" VT_RST); // "Discovered!"
-        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
 #if OOT_PAL_N64
         this->actor.flags |= ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_4;
 #endif

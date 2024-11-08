@@ -267,7 +267,7 @@ void EnDntNomal_TargetWait(EnDntNomal* this, PlayState* play) {
                 this->hitCounter++;
                 if (this->hitCounter >= 3) {
                     OnePointCutscene_Init(play, 4140, -99, &this->actor, CAM_ID_MAIN);
-                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
                     this->timer4 = 50;
                     this->actionFunc = EnDntNomal_SetupTargetUnburrow;
                 }
@@ -356,7 +356,7 @@ void EnDntNomal_TargetTalk(EnDntNomal* this, PlayState* play) {
         Message_CloseTextbox(play);
         Camera_SetFinishedFlag(GET_ACTIVE_CAM(play));
         GET_ACTIVE_CAM(play)->csId = 0;
-        Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+        Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
         this->actionFunc = EnDntNomal_SetupTargetGivePrize;
     }
 }
@@ -378,7 +378,7 @@ void EnDntNomal_TargetGivePrize(EnDntNomal* this, PlayState* play) {
 
         if (Actor_SpawnAsChild(&play->actorCtx, &this->actor, play, ACTOR_EN_EX_ITEM, itemX, itemY, itemZ, 0, 0, 0,
                                EXITEM_BULLET_BAG) == NULL) {
-            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_7);
+            Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_END);
             Actor_Kill(&this->actor);
         }
         this->spawnedItem = true;

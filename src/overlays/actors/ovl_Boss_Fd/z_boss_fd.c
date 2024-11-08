@@ -310,7 +310,7 @@ void BossFd_Fly(BossFd* this, PlayState* play) {
 
                     this->introState = BFD_CS_START;
                     Cutscene_StartManual(play, &play->csCtx);
-                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_8);
+                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_WAIT);
                     this->subCamId = Play_CreateSubCamera(play);
                     Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STAT_WAIT);
                     Play_ChangeCameraStatus(play, this->subCamId, CAM_STAT_ACTIVE);
@@ -387,7 +387,7 @@ void BossFd_Fly(BossFd* this, PlayState* play) {
                     Math_ApproachF(&this->subCamShake, 2.0f, 1.0f, 0.8 * 0.01f);
                 }
                 if (this->timers[0] == 40) {
-                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_19);
+                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_REACT_TO_QUAKE);
                 }
                 if (this->timers[0] == 0) {
                     this->introState = BFD_CS_LOOK_GROUND;
@@ -416,7 +416,7 @@ void BossFd_Fly(BossFd* this, PlayState* play) {
                     this->timers[0] = 170;
                     this->subCamVelFactor = 0.0f;
                     this->subCamAccel = 0.0f;
-                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_20);
+                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END_REACT_TO_QUAKE);
                 }
                 break;
             case BFD_CS_COLLAPSE:
@@ -466,7 +466,7 @@ void BossFd_Fly(BossFd* this, PlayState* play) {
                 if (this->timers[3] == 190) {
                     this->subCamAtMaxVelFrac.x = this->subCamAtMaxVelFrac.y = this->subCamAtMaxVelFrac.z = 0.05f;
                     this->platformSignal = VBSIMA_KILL;
-                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
                 }
                 if (this->actor.world.pos.y > 120.0f) {
                     this->subCamAtNext = this->actor.world.pos;
@@ -536,7 +536,7 @@ void BossFd_Fly(BossFd* this, PlayState* play) {
                     // BFD_CS_NONE / BOSSFD_FLY_MAIN / SUB_CAM_ID_DONE
                     this->introState = this->introFlyState = this->subCamId = 0;
                     Cutscene_StopManual(play, &play->csCtx);
-                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
                     this->actionFunc = BossFd_Wait;
                     this->handoffSignal = FD2_SIGNAL_GROUND;
                     SET_EVENTCHKINF(EVENTCHKINF_73);
@@ -847,7 +847,7 @@ void BossFd_Fly(BossFd* this, PlayState* play) {
                         Audio_PlaySfxGeneral(NA_SE_EN_VALVAISA_LAND2, &this->actor.projectedPos, 4,
                                              &gSfxDefaultFreqAndVolScale, &gSfxDefaultFreqAndVolScale,
                                              &gSfxDefaultReverb);
-                        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_5);
+                        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_SURPRISED);
                         for (i1 = 0; i1 < 15; i1++) {
                             Vec3f sp144 = { 0.0f, 0.0f, 0.0f };
                             Vec3f sp138 = { 0.0f, 0.0f, 0.0f };

@@ -430,7 +430,7 @@ void EnDns_Sale(EnDns* this, PlayState* play) {
 void EnDns_SetupBurrow(EnDns* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
 
-    if (player->stateFlags1 & PLAYER_STATE1_10) {
+    if (player->stateFlags1 & PLAYER_STATE1_GETTING_ITEM ) {
         if ((Message_GetState(&play->msgCtx) == TEXT_STATE_DONE) && Message_ShouldAdvance(play)) {
             this->dnsItemEntry->payment(this);
             this->dropCollectible = true;

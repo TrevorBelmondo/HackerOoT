@@ -386,7 +386,7 @@ void EnExItem_TargetPrizeApproach(EnExItem* this, PlayState* play) {
         s32 getItemId;
 
         this->actor.draw = NULL;
-        Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_7);
+        Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_END);
         this->actor.parent = NULL;
         if (CUR_UPG_VALUE(UPG_BULLET_BAG) == 1) {
             getItemId = GI_BULLET_BAG_40;

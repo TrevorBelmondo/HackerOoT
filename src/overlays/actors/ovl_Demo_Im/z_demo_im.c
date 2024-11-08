@@ -878,7 +878,7 @@ void func_80986B2C(PlayState* play) {
         play->nextEntranceIndex = ENTR_HYRULE_FIELD_0;
         play->transitionType = TRANS_TYPE_CIRCLE(TCA_STARBURST, TCC_BLACK, TCS_FAST);
         play->transitionTrigger = TRANS_TRIGGER_START;
-        Player_SetCsActionWithHaltedActors(play, &player->actor, PLAYER_CSACTION_8);
+        Player_SetCsActionWithHaltedActors(play, &player->actor, PLAYER_CSMODE_WAIT);
     }
 }
 

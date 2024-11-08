@@ -629,7 +629,7 @@ void BossGoma_SetupEncounterState4(BossGoma* this, PlayState* play) {
     this->actionState = 4;
     this->actor.flags |= ACTOR_FLAG_ATTENTION_ENABLED;
     Cutscene_StartManual(play, &play->csCtx);
-    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
     this->subCamId = Play_CreateSubCamera(play);
     Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STAT_UNK3);
     Play_ChangeCameraStatus(play, this->subCamId, CAM_STAT_ACTIVE);
@@ -687,7 +687,7 @@ void BossGoma_Encounter(BossGoma* this, PlayState* play) {
                     Actor_SpawnAsChild(&play->actorCtx, &this->actor, play, ACTOR_DOOR_SHUTTER, 164.72f, -480.0f,
                                        397.68002f, 0, -0x705C, 0, DOORSHUTTER_PARAMS(SHUTTER_GOHMA_BLOCK, 0));
                 } else {
-                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_8);
+                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_WAIT);
                     this->actionState = 1;
                 }
             }
@@ -758,7 +758,7 @@ void BossGoma_Encounter(BossGoma* this, PlayState* play) {
             }
 
             if (this->frameCount == 190) {
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_2);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_TURN_AROUND_SURPRISED_SHORT);
             }
 
             if (this->frameCount >= 228) {
@@ -770,7 +770,7 @@ void BossGoma_Encounter(BossGoma* this, PlayState* play) {
                 Play_ReturnToMainCam(play, this->subCamId, 0);
                 this->subCamId = SUB_CAM_ID_DONE;
                 Cutscene_StopManual(play, &play->csCtx);
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
                 this->actionState = 3;
             }
             break;
@@ -965,7 +965,7 @@ void BossGoma_Encounter(BossGoma* this, PlayState* play) {
                 this->disableGameplayLogic = false;
                 this->patienceTimer = 200;
                 Cutscene_StopManual(play, &play->csCtx);
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
             }
             break;
     }
@@ -1054,7 +1054,7 @@ void BossGoma_Defeated(BossGoma* this, PlayState* play) {
         case 0:
             this->actionState = 1;
             Cutscene_StartManual(play, &play->csCtx);
-            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
             this->subCamId = Play_CreateSubCamera(play);
             Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STAT_UNK3);
             Play_ChangeCameraStatus(play, this->subCamId, CAM_STAT_ACTIVE);
@@ -1182,7 +1182,7 @@ void BossGoma_Defeated(BossGoma* this, PlayState* play) {
                     Play_ReturnToMainCam(play, this->subCamId, 0);
                     this->subCamId = SUB_CAM_ID_DONE;
                     Cutscene_StopManual(play, &play->csCtx);
-                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
                     Actor_Kill(&this->actor);
                 }
 

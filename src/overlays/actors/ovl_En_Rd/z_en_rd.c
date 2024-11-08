@@ -355,9 +355,9 @@ void EnRd_WalkToPlayer(EnRd* this, PlayState* play) {
     }
 
     if ((ABS(yaw) < 0x1554) && (Actor_WorldDistXYZToActor(&this->actor, &player->actor) <= 150.0f)) {
-        if (!(player->stateFlags1 & (PLAYER_STATE1_DEAD | PLAYER_STATE1_13 | PLAYER_STATE1_14 | PLAYER_STATE1_18 |
-                                     PLAYER_STATE1_19 | PLAYER_STATE1_21)) &&
-            !(player->stateFlags2 & PLAYER_STATE2_7)) {
+        if (!(player->stateFlags1 & (PLAYER_STATE1_DEAD | PLAYER_STATE1_HANGING_FROM_LEDGE_SLIP  | PLAYER_STATE1_CLIMBING_ONTO_LEDGE  | PLAYER_STATE1_JUMPING  |
+                                     PLAYER_STATE1_FREEFALLING  | PLAYER_STATE1_CLIMBING )) &&
+            !(player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY )) {
             if (this->playerStunWaitTimer == 0) {
                 if (!(this->rdFlags & 0x80)) {
                     player->actor.freezeTimer = 40;
@@ -439,9 +439,9 @@ void EnRd_WalkToHome(EnRd* this, PlayState* play) {
     this->actor.world.rot.y = this->actor.shape.rot.y;
     SkelAnime_Update(&this->skelAnime);
 
-    if (!(player->stateFlags1 & (PLAYER_STATE1_DEAD | PLAYER_STATE1_13 | PLAYER_STATE1_14 | PLAYER_STATE1_18 |
-                                 PLAYER_STATE1_19 | PLAYER_STATE1_21)) &&
-        !(player->stateFlags2 & PLAYER_STATE2_7) &&
+    if (!(player->stateFlags1 & (PLAYER_STATE1_DEAD | PLAYER_STATE1_HANGING_FROM_LEDGE_SLIP  | PLAYER_STATE1_CLIMBING_ONTO_LEDGE  | PLAYER_STATE1_JUMPING  |
+                                 PLAYER_STATE1_FREEFALLING  | PLAYER_STATE1_CLIMBING )) &&
+        !(player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY ) &&
         (Actor_WorldDistXYZToPoint(&player->actor, &this->actor.home.pos) < 150.0f)) {
         this->actor.attentionRangeType = ATTENTION_RANGE_0;
         EnRd_SetupWalkToPlayer(this, play);
@@ -544,7 +544,7 @@ void EnRd_Grab(EnRd* this, PlayState* play) {
             Math_SmoothStepToS(&this->upperBodyYRotation, 0, 1, 0x5DC, 0);
             FALLTHROUGH;
         case REDEAD_GRAB_ATTACK:
-            if (!(player->stateFlags2 & PLAYER_STATE2_7)) {
+            if (!(player->stateFlags2 & PLAYER_STATE2_RESTRAINED_BY_ENEMY )) {
                 Animation_Change(&this->skelAnime, &gGibdoRedeadGrabEndAnim, 0.5f, 0.0f,
                                  Animation_GetLastFrame(&gGibdoRedeadGrabEndAnim), ANIMMODE_ONCE_INTERP, 0.0f);
                 this->grabState++;
@@ -574,7 +574,7 @@ void EnRd_Grab(EnRd* this, PlayState* play) {
                 play->damagePlayer(play, -8);
                 Rumble_Request(this->actor.xzDistToPlayer, 240, 1, 12);
                 this->grabDamageTimer = 20;
-                Player_PlaySfx(player, NA_SE_VO_LI_DAMAGE_S + player->ageProperties->unk_92);
+                Player_PlaySfx(player, NA_SE_VO_LI_DAMAGE_S + player->ageProperties->ageVoiceSfxOffset);
             }
             break;
 
@@ -815,8 +815,8 @@ void EnRd_UpdateDamage(EnRd* this, PlayState* play) {
 
         if (this->action != REDEAD_ACTION_RISE_FROM_COFFIN) {
             Actor_SetDropFlag(&this->actor, &this->collider.elem, true);
-            if (player->unk_844 != 0) {
-                this->unk_31D = player->unk_845;
+            if (player->comboTimer != 0) {
+                this->unk_31D = player->slashCounter;
             }
 
             if ((this->damageEffect != REDEAD_DMGEFF_NONE) && (this->damageEffect != REDEAD_DMGEFF_ICE_MAGIC)) {
@@ -891,7 +891,7 @@ void EnRd_Update(Actor* thisx, PlayState* play) {
     if ((this->actor.colChkInfo.health > 0) && (this->action != REDEAD_ACTION_GRAB)) {
         Collider_UpdateCylinder(&this->actor, &this->collider);
         CollisionCheck_SetOC(play, &play->colChkCtx, &this->collider.base);
-        if ((this->action != REDEAD_ACTION_DAMAGED) || ((player->unk_844 != 0) && (player->unk_845 != this->unk_31D))) {
+        if ((this->action != REDEAD_ACTION_DAMAGED) || ((player->comboTimer != 0) && (player->slashCounter != this->unk_31D))) {
             CollisionCheck_SetAC(play, &play->colChkCtx, &this->collider.base);
         }
     }

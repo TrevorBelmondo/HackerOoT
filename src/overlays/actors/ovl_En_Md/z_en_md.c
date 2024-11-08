@@ -761,16 +761,16 @@ void func_80AAB948(EnMd* this, PlayState* play) {
     }
 
     if ((this->interactInfo.talkState == NPC_TALK_STATE_IDLE) && (play->sceneId == SCENE_LOST_WOODS)) {
-        if (player->stateFlags2 & PLAYER_STATE2_24) {
-            player->stateFlags2 |= PLAYER_STATE2_25;
-            player->unk_6A8 = &this->actor;
+        if (player->stateFlags2 & PLAYER_STATE2_ATTEMPT_PLAY_OCARINA_FOR_ACTOR ) {
+            player->stateFlags2 |= PLAYER_STATE2_PLAYING_OCARINA_FOR_ACTOR ;
+            player->ocarinaActor = &this->actor;
             Message_StartOcarina(play, OCARINA_ACTION_CHECK_SARIA);
             this->actionFunc = func_80AABC10;
             return;
         }
 
         if (this->actor.xzDistToPlayer < (30.0f + this->collider.dim.radius)) {
-            player->stateFlags2 |= PLAYER_STATE2_23;
+            player->stateFlags2 |= PLAYER_STATE2_NEAR_OCARINA_ACTOR ;
         }
     }
 }
@@ -790,7 +790,7 @@ void func_80AABC10(EnMd* this, PlayState* play) {
         this->actionFunc = func_80AAB948;
         play->msgCtx.ocarinaMode = OCARINA_MODE_04;
     } else {
-        player->stateFlags2 |= PLAYER_STATE2_23;
+        player->stateFlags2 |= PLAYER_STATE2_NEAR_OCARINA_ACTOR ;
     }
 }
 

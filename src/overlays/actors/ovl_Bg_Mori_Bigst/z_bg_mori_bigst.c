@@ -167,7 +167,7 @@ void BgMoriBigst_Fall(BgMoriBigst* this, PlayState* play) {
         BgMoriBigst_SetupLanding(this, play);
         Actor_PlaySfx(&this->dyna.actor, NA_SE_EV_STONE_BOUND);
         OnePointCutscene_Init(play, 1020, 8, &this->dyna.actor, CAM_ID_MAIN);
-        Player_SetCsAction(play, NULL, PLAYER_CSACTION_60);
+        Player_SetCsAction(play, NULL, PLAYER_CSMODE_FALL_TO_KNEE);
     }
 }
 

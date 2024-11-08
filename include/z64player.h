@@ -407,108 +407,108 @@ typedef enum PlayerAnimGroup {
 
 typedef enum PlayerCsAction {
     /* 0x00 */ PLAYER_CSACTION_NONE,
-    /* 0x01 */ PLAYER_CSACTION_1,
-    /* 0x02 */ PLAYER_CSACTION_2,
+    /* 0x01 */ PLAYER_CSMODE_IDLE,
+    /* 0x02 */ PLAYER_CSMODE_TURN_AROUND_SURPRISED_SHORT,
     /* 0x03 */ PLAYER_CSACTION_3,
     /* 0x04 */ PLAYER_CSACTION_4,
-    /* 0x05 */ PLAYER_CSACTION_5,
+    /* 0x05 */ PLAYER_CSMODE_SURPRISED,
     /* 0x06 */ PLAYER_CSACTION_6,
-    /* 0x07 */ PLAYER_CSACTION_7,
-    /* 0x08 */ PLAYER_CSACTION_8,
-    /* 0x09 */ PLAYER_CSACTION_9,
-    /* 0x0A */ PLAYER_CSACTION_10,
-    /* 0x0B */ PLAYER_CSACTION_11,
-    /* 0x0C */ PLAYER_CSACTION_12,
-    /* 0x0D */ PLAYER_CSACTION_13,
-    /* 0x0E */ PLAYER_CSACTION_14,
-    /* 0x0F */ PLAYER_CSACTION_15,
-    /* 0x10 */ PLAYER_CSACTION_16,
-    /* 0x11 */ PLAYER_CSACTION_17,
-    /* 0x12 */ PLAYER_CSACTION_18,
-    /* 0x13 */ PLAYER_CSACTION_19,
-    /* 0x14 */ PLAYER_CSACTION_20,
+    /* 0x07 */ PLAYER_CSMODE_END,
+    /* 0x08 */ PLAYER_CSMODE_WAIT,
+    /* 0x09 */ PLAYER_CSMODE_TURN_AROUND_SURPRISED_LONG,
+    /* 0x0A */ PLAYER_CSMODE_ENTER_WARP,
+    /* 0x0B */ PLAYER_CSMODE_RAISED_BY_WARP,
+    /* 0x0C */ PLAYER_CSMODE_FIGHT_STANCE,
+    /* 0x0D */ PLAYER_CSMODE_START_GET_SPIRITUAL_STONE,
+    /* 0x0E */ PLAYER_CSMODE_GET_SPIRITUAL_STONE,
+    /* 0x0F */ PLAYER_CSMODE_END_GET_SPIRITUAL_STONE,
+    /* 0x10 */ PLAYER_CSMODE_GET_UP_FROM_DEKU_TREE_STORY,
+    /* 0x11 */ PLAYER_CSMODE_SIT_LISTENING_TO_DEKU_TREE_STORY,
+    /* 0x12 */ PLAYER_CSMODE_SWORD_INTO_PEDESTAL,
+    /* 0x13 */ PLAYER_CSMODE_REACT_TO_QUAKE,
+    /* 0x14 */ PLAYER_CSMODE_END_REACT_TO_QUAKE,
     /* 0x15 */ PLAYER_CSACTION_21,
-    /* 0x16 */ PLAYER_CSACTION_22,
-    /* 0x17 */ PLAYER_CSACTION_23,
-    /* 0x18 */ PLAYER_CSACTION_24,
-    /* 0x19 */ PLAYER_CSACTION_25,
-    /* 0x1A */ PLAYER_CSACTION_26,
-    /* 0x1B */ PLAYER_CSACTION_27,
-    /* 0x1C */ PLAYER_CSACTION_28,
-    /* 0x1D */ PLAYER_CSACTION_29,
-    /* 0x1E */ PLAYER_CSACTION_30,
-    /* 0x1F */ PLAYER_CSACTION_31,
-    /* 0x20 */ PLAYER_CSACTION_32,
-    /* 0x21 */ PLAYER_CSACTION_33,
-    /* 0x22 */ PLAYER_CSACTION_34,
-    /* 0x23 */ PLAYER_CSACTION_35,
-    /* 0x24 */ PLAYER_CSACTION_36,
-    /* 0x25 */ PLAYER_CSACTION_37,
-    /* 0x26 */ PLAYER_CSACTION_38,
-    /* 0x27 */ PLAYER_CSACTION_39,
-    /* 0x28 */ PLAYER_CSACTION_40,
-    /* 0x29 */ PLAYER_CSACTION_41,
-    /* 0x2A */ PLAYER_CSACTION_42,
-    /* 0x2B */ PLAYER_CSACTION_43,
-    /* 0x2C */ PLAYER_CSACTION_44,
-    /* 0x2D */ PLAYER_CSACTION_45,
-    /* 0x2E */ PLAYER_CSACTION_46,
-    /* 0x2F */ PLAYER_CSACTION_47,
-    /* 0x30 */ PLAYER_CSACTION_48,
-    /* 0x31 */ PLAYER_CSACTION_49,
-    /* 0x32 */ PLAYER_CSACTION_50,
-    /* 0x33 */ PLAYER_CSACTION_51,
-    /* 0x34 */ PLAYER_CSACTION_52,
-    /* 0x35 */ PLAYER_CSACTION_53,
-    /* 0x36 */ PLAYER_CSACTION_54,
-    /* 0x37 */ PLAYER_CSACTION_55,
-    /* 0x38 */ PLAYER_CSACTION_56,
-    /* 0x39 */ PLAYER_CSACTION_57,
-    /* 0x3A */ PLAYER_CSACTION_58,
-    /* 0x3B */ PLAYER_CSACTION_59,
-    /* 0x3C */ PLAYER_CSACTION_60,
-    /* 0x3D */ PLAYER_CSACTION_61,
-    /* 0x3E */ PLAYER_CSACTION_62,
-    /* 0x3F */ PLAYER_CSACTION_63,
-    /* 0x40 */ PLAYER_CSACTION_64,
-    /* 0x41 */ PLAYER_CSACTION_65,
-    /* 0x42 */ PLAYER_CSACTION_66,
-    /* 0x43 */ PLAYER_CSACTION_67,
-    /* 0x44 */ PLAYER_CSACTION_68,
-    /* 0x45 */ PLAYER_CSACTION_69,
-    /* 0x46 */ PLAYER_CSACTION_70,
-    /* 0x47 */ PLAYER_CSACTION_71,
-    /* 0x48 */ PLAYER_CSACTION_72,
-    /* 0x49 */ PLAYER_CSACTION_73,
-    /* 0x4A */ PLAYER_CSACTION_74,
-    /* 0x4B */ PLAYER_CSACTION_75,
-    /* 0x4C */ PLAYER_CSACTION_76,
-    /* 0x4D */ PLAYER_CSACTION_77,
-    /* 0x4E */ PLAYER_CSACTION_78,
-    /* 0x4F */ PLAYER_CSACTION_79,
-    /* 0x50 */ PLAYER_CSACTION_80,
-    /* 0x51 */ PLAYER_CSACTION_81,
-    /* 0x52 */ PLAYER_CSACTION_82,
-    /* 0x53 */ PLAYER_CSACTION_83,
-    /* 0x54 */ PLAYER_CSACTION_84,
-    /* 0x55 */ PLAYER_CSACTION_85,
-    /* 0x56 */ PLAYER_CSACTION_86,
-    /* 0x57 */ PLAYER_CSACTION_87,
-    /* 0x58 */ PLAYER_CSACTION_88,
-    /* 0x59 */ PLAYER_CSACTION_89,
-    /* 0x5A */ PLAYER_CSACTION_90,
+    /* 0x16 */ PLAYER_CSMODE_WARP_TO_SAGES,
+    /* 0x17 */ PLAYER_CSMODE_LOOK_AT_SELF,
+    /* 0x18 */ PLAYER_CSMODE_KNOCKED_TO_GROUND,
+    /* 0x19 */ PLAYER_CSMODE_GET_UP_FROM_GROUND,
+    /* 0x1A */ PLAYER_CSMODE_START_PLAY_OCARINA,
+    /* 0x1B */ PLAYER_CSMODE_END_PLAY_OCARINA,
+    /* 0x1C */ PLAYER_CSMODE_GET_ITEM,
+    /* 0x1D */ PLAYER_CSMODE_IDLE_2,
+    /* 0x1E */ PLAYER_CSMODE_DRAW_AND_BRANDISH_SWORD,
+    /* 0x1F */ PLAYER_CSMODE_CLOSE_EYES,
+    /* 0x20 */ PLAYER_CSMODE_OPEN_EYES,
+    /* 0x21 */ PLAYER_CSMODE_SURPRIED_STUMBLE_BACK_AND_FALL,
+    /* 0x22 */ PLAYER_CSMODE_SURFACE_FROM_DIVE,
+    /* 0x23 */ PLAYER_CSMODE_GET_ITEM_IN_WATER,
+    /* 0x24 */ PLAYER_CSMODE_GENTLE_KNOCKBACK_INTO_SIT,
+    /* 0x25 */ PLAYER_CSMODE_GRABBED_AND_CARRIED_BY_NECK,
+    /* 0x26 */ PLAYER_CSMODE_SLEEPING_RESTLESS,
+    /* 0x27 */ PLAYER_CSMODE_SLEEPING,
+    /* 0x28 */ PLAYER_CSMODE_AWAKEN,
+    /* 0x29 */ PLAYER_CSMODE_GET_OFF_BED,
+    /* 0x2A */ PLAYER_CSMODE_BLOWN_BACKWARD,
+    /* 0x2B */ PLAYER_CSMODE_STAND_UP_AND_WATCH,
+    /* 0x2C */ PLAYER_CSMODE_IDLE_3,
+    /* 0x2D */ PLAYER_CSMODE_STOP,
+    /* 0x2E */ PLAYER_CSMODE_STOP_2,
+    /* 0x2F */ PLAYER_CSMODE_LOOK_THROUGH_PEEPHOLE,
+    /* 0x30 */ PLAYER_CSMODE_STEP_BACK_CAUTIOUSLY,
+    /* 0x31 */ PLAYER_CSMODE_IDLE_4,
+    /* 0x32 */ PLAYER_CSMODE_DRAW_SWORD_CHILD,
+    /* 0x33 */ PLAYER_CSMODE_JUMP_TO_ZELDAS_CRYSTAL,
+    /* 0x34 */ PLAYER_CSMODE_DESPERATE_LOOKING_AT_ZELDAS_CRYSTAL,
+    /* 0x35 */ PLAYER_CSMODE_LOOK_UP_AT_ZELDAS_CRYSTAL_VANISHING,
+    /* 0x36 */ PLAYER_CSMODE_TURN_AROUND_SLOWLY,
+    /* 0x37 */ PLAYER_CSMODE_END_SHIELD_EYES_WITH_HAND,
+    /* 0x38 */ PLAYER_CSMODE_SHIELD_EYES_WITH_HAND,
+    /* 0x39 */ PLAYER_CSMODE_LOOK_AROUND_SURPRISED,
+    /* 0x3A */ PLAYER_CSMODE_INSPECT_GROUND_CAREFULLY,
+    /* 0x3B */ PLAYER_CSMODE_STARTLED_BY_GORONS_FALLING,
+    /* 0x3C */ PLAYER_CSMODE_FALL_TO_KNEE,
+    /* 0x3D */ PLAYER_CSMODE_FLAT_ON_BACK,
+    /* 0x3E */ PLAYER_CSMODE_RAISE_FROM_FLAT_ON_BACK,
+    /* 0x3F */ PLAYER_CSMODE_START_SPIN_ATTACK,
+    /* 0x40 */ PLAYER_CSMODE_ZELDA_CLOUDS_CUTSCENE_IDLE,
+    /* 0x41 */ PLAYER_CSMODE_ZELDA_CLOUDS_CUTSCENE_START_PASS_OCARINA,
+    /* 0x42 */ PLAYER_CSMODE_ZELDA_CLOUDS_CUTSCENE_END_PASS_OCARINA,
+    /* 0x43 */ PLAYER_CSMODE_START_LOOK_AROUND_AFTER_SWORD_WARP,
+    /* 0x44 */ PLAYER_CSMODE_END_LOOK_AROUND_AFTER_SWORD_WARP,
+    /* 0x45 */ PLAYER_CSMODE_LOOK_AROUND_AND_AT_SELF_QUICKLY,
+    /* 0x46 */ PLAYER_CSMODE_START_LEARN_OCARINA_SONG_ADULT,
+    /* 0x47 */ PLAYER_CSMODE_END_LEARN_OCARINA_SONG_ADULT,
+    /* 0x48 */ PLAYER_CSMODE_START_LEARN_OCARINA_SONG_CHILD,
+    /* 0x49 */ PLAYER_CSMODE_END_LEARN_OCARINA_SONG_CHILD,
+    /* 0x4A */ PLAYER_CSMODE_RESIST_DARK_MAGIC,
+    /* 0x4B */ PLAYER_CSMODE_TRIFORCE_HAND_RESONATES,
+    /* 0x4C */ PLAYER_CSMODE_STARE_DOWN_STARTLED,
+    /* 0x4D */ PLAYER_CSMODE_LOOK_UP_STARTLED,
+    /* 0x4E */ PLAYER_CSMODE_LOOK_TO_CHARACTER_AT_SIDE_SMILING,
+    /* 0x4F */ PLAYER_CSMODE_LOOK_TO_CHARACTER_ABOVE_SMILING,
+    /* 0x50 */ PLAYER_CSMODE_SURPRISED_DEFENSE,
+    /* 0x51 */ PLAYER_CSMODE_START_HALF_TURN_SURPRISED,
+    /* 0x52 */ PLAYER_CSMODE_END_HALF_TURN_SURPRISED,
+    /* 0x53 */ PLAYER_CSMODE_START_LOOK_UP_DEFENSE,
+    /* 0x54 */ PLAYER_CSMODE_LOOK_UP_DEFENSE_IDLE,
+    /* 0x55 */ PLAYER_CSMODE_END_LOOK_UP_DEFENSE,
+    /* 0x56 */ PLAYER_CSMODE_START_SWORD_KNOCKED_FROM_HAND,
+    /* 0x57 */ PLAYER_CSMODE_SWORD_KNOCKED_FROM_HAND_IDLE,
+    /* 0x58 */ PLAYER_CSMODE_END_SWORD_KNOCKED_FROM_HAND,
+    /* 0x59 */ PLAYER_CSMODE_SPIN_ATTACK_IDLE,
+    /* 0x5A */ PLAYER_CSMODE_INSPECT_WEAPON,
     /* 0x5B */ PLAYER_CSACTION_91,
-    /* 0x5C */ PLAYER_CSACTION_92,
-    /* 0x5D */ PLAYER_CSACTION_93,
-    /* 0x5E */ PLAYER_CSACTION_94,
-    /* 0x5F */ PLAYER_CSACTION_95,
-    /* 0x60 */ PLAYER_CSACTION_96,
-    /* 0x61 */ PLAYER_CSACTION_97,
-    /* 0x62 */ PLAYER_CSACTION_98,
-    /* 0x63 */ PLAYER_CSACTION_99,
-    /* 0x64 */ PLAYER_CSACTION_100,
-    /* 0x65 */ PLAYER_CSACTION_101,
-    /* 0x66 */ PLAYER_CSACTION_102,
+    /* 0x5C */ PLAYER_CSMODE_KNOCKED_TO_GROUND_WITH_DAMAGE_EFFECT,
+    /* 0x5D */ PLAYER_CSMODE_REACT_TO_HEAT,
+    /* 0x5E */ PLAYER_CSMODE_GET_SWORD_BACK,
+    /* 0x5F */ PLAYER_CSMODE_CAUGHT_BY_GUARD,
+    /* 0x60 */ PLAYER_CSMODE_GET_SWORD_BACK_2,
+    /* 0x61 */ PLAYER_CSMODE_START_GANON_KILL_COMBO,
+    /* 0x62 */ PLAYER_CSMODE_END_GANON_KILL_COMBO,
+    /* 0x63 */ PLAYER_CSMODE_WATCH_ZELDA_STUN_GANON,
+    /* 0x64 */ PLAYER_CSMODE_START_LOOK_AT_SWORD_GLOW,
+    /* 0x65 */ PLAYER_CSMODE_LOOK_AT_SWORD_GLOW_IDLE,
+    /* 0x66 */ PLAYER_CSMODE_END_LOOK_AT_SWORD_GLOW,
     /* 0x67 */ PLAYER_CSACTION_MAX
 } PlayerCsAction;
 
@@ -628,7 +628,7 @@ typedef enum {
 typedef struct PlayerAgeProperties {
     /* 0x00 */ f32 ceilingCheckHeight;
     /* 0x04 */ f32 unk_04;
-    /* 0x08 */ f32 unk_08;
+    /* 0x08 */ f32 translationScale;
     /* 0x0C */ f32 unk_0C;
     /* 0x10 */ f32 unk_10;
     /* 0x14 */ f32 unk_14;
@@ -636,8 +636,8 @@ typedef struct PlayerAgeProperties {
     /* 0x1C */ f32 unk_1C;
     /* 0x20 */ f32 unk_20;
     /* 0x24 */ f32 unk_24;
-    /* 0x28 */ f32 unk_28;
-    /* 0x2C */ f32 unk_2C;
+    /* 0x28 */ f32 waterSurface;
+    /* 0x2C */ f32 diveWaterSurface;
     /* 0x30 */ f32 unk_30;
     /* 0x34 */ f32 unk_34;
     /* 0x38 */ f32 wallCheckRadius;
@@ -648,17 +648,17 @@ typedef struct PlayerAgeProperties {
     /* 0x62 */ Vec3s unk_62[4];
     /* 0x7A */ Vec3s unk_7A[2];
     /* 0x86 */ Vec3s unk_86[2];
-    /* 0x92 */ u16 unk_92;
-    /* 0x94 */ u16 unk_94;
-    /* 0x98 */ LinkAnimationHeader* unk_98;
-    /* 0x9C */ LinkAnimationHeader* unk_9C;
-    /* 0xA0 */ LinkAnimationHeader* unk_A0;
-    /* 0xA4 */ LinkAnimationHeader* unk_A4;
-    /* 0xA8 */ LinkAnimationHeader* unk_A8;
-    /* 0xAC */ LinkAnimationHeader* unk_AC[4];
-    /* 0xBC */ LinkAnimationHeader* unk_BC[2];
-    /* 0xC4 */ LinkAnimationHeader* unk_C4[2];
-    /* 0xCC */ LinkAnimationHeader* unk_CC[2];
+    /* 0x92 */ u16 ageVoiceSfxOffset;
+    /* 0x94 */ u16 ageMoveSfxOffset;
+    /* 0x98 */ LinkAnimationHeader* chestOpenAnim;
+    /* 0x9C */ LinkAnimationHeader* timeTravelStartAnim;
+    /* 0xA0 */ LinkAnimationHeader* timeTravelEndAnim;
+    /* 0xA4 */ LinkAnimationHeader* startClimb1Anim;
+    /* 0xA8 */ LinkAnimationHeader* startClimb2Anim;
+    /* 0xAC */ LinkAnimationHeader* verticalClimbAnim[4];
+    /* 0xBC */ LinkAnimationHeader* horizontalClimbAnim[2];
+    /* 0xC4 */ LinkAnimationHeader* endClimb1Anim[2];
+    /* 0xCC */ LinkAnimationHeader* endClimb2Anim[2];
 } PlayerAgeProperties; // size = 0xD4
 
 typedef struct WeaponInfo {
@@ -669,78 +669,78 @@ typedef struct WeaponInfo {
 
 #define LEDGE_DIST_MAX 399.96002f
 
-#define PLAYER_STATE1_0 (1 << 0)
+#define PLAYER_STATE1_EXITING_SCENE  (1 << 0)
 #define PLAYER_STATE1_SWINGING_BOTTLE (1 << 1) // Bottle is swung; Bottle is active and can catch things
-#define PLAYER_STATE1_2 (1 << 2)
-#define PLAYER_STATE1_3 (1 << 3)
+#define PLAYER_STATE1_END_HOOKSHOT_MOVE  (1 << 2)
+#define PLAYER_STATE1_AIMING_FPS_ITEM  (1 << 3)
 #define PLAYER_STATE1_HOSTILE_LOCK_ON (1 << 4) // Currently locked onto a hostile actor. Triggers a "battle" variant of many actions.
-#define PLAYER_STATE1_5 (1 << 5)
+#define PLAYER_STATE1_INPUT_DISABLED  (1 << 5)
 #define PLAYER_STATE1_TALKING (1 << 6) // Currently talking to an actor. This includes item exchanges.
 #define PLAYER_STATE1_DEAD (1 << 7) // Player has died. Note that this gets set when the death cutscene has started, after landing from the air.
 #define PLAYER_STATE1_START_CHANGING_HELD_ITEM (1 << 8) // Item change process has begun
-#define PLAYER_STATE1_9 (1 << 9)
-#define PLAYER_STATE1_10 (1 << 10)
+#define PLAYER_STATE1_READY_TO_SHOOT (1 << 9)
+#define PLAYER_STATE1_GETTING_ITEM  (1 << 10)
 #define PLAYER_STATE1_CARRYING_ACTOR (1 << 11) // Currently carrying an actor
 #define PLAYER_STATE1_CHARGING_SPIN_ATTACK (1 << 12) // Currently charing a spin attack (by holding down the B button)
-#define PLAYER_STATE1_13 (1 << 13)
-#define PLAYER_STATE1_14 (1 << 14)
-#define PLAYER_STATE1_Z_TARGETING (1 << 15) // Either lock-on or parallel is active. This flag is never checked for and is practically unused.
+#define PLAYER_STATE1_HANGING_FROM_LEDGE_SLIP  (1 << 13)
+#define PLAYER_STATE1_CLIMBING_ONTO_LEDGE  (1 << 14)
+#define PLAYER_STATE1_UNUSED_Z_TARGETING_FLAG  (1 << 15) // Either lock-on or parallel is active. This flag is never checked for and is practically unused.
 #define PLAYER_STATE1_FRIENDLY_ACTOR_FOCUS (1 << 16) // Currently focusing on a friendly actor. Includes friendly lock-on, talking, and more. Usually does not include hostile actor lock-on, see `PLAYER_STATE1_HOSTILE_LOCK_ON`.
 #define PLAYER_STATE1_PARALLEL (1 << 17) // "Parallel" mode, Z-Target without an actor lock-on
-#define PLAYER_STATE1_18 (1 << 18)
-#define PLAYER_STATE1_19 (1 << 19)
-#define PLAYER_STATE1_20 (1 << 20)
-#define PLAYER_STATE1_21 (1 << 21)
+#define PLAYER_STATE1_JUMPING  (1 << 18)
+#define PLAYER_STATE1_FREEFALLING  (1 << 19)
+#define PLAYER_STATE1_IN_FIRST_PERSON_MODE  (1 << 20)
+#define PLAYER_STATE1_CLIMBING  (1 << 21)
 #define PLAYER_STATE1_22 (1 << 22)
-#define PLAYER_STATE1_23 (1 << 23)
-#define PLAYER_STATE1_USING_BOOMERANG (1 << 24) // Currently using the boomerang. This includes all phases (aiming, throwing, and catching).
-#define PLAYER_STATE1_BOOMERANG_THROWN (1 << 25) // Boomerang has been thrown and is flying in the air
-#define PLAYER_STATE1_26 (1 << 26)
-#define PLAYER_STATE1_27 (1 << 27)
-#define PLAYER_STATE1_28 (1 << 28)
-#define PLAYER_STATE1_29 (1 << 29)
+#define PLAYER_STATE1_RIDING_HORSE  (1 << 23)
+#define PLAYER_STATE1_AIMING_BOOMERANG  (1 << 24) // Currently using the boomerang. This includes all phases (aiming, throwing, and catching).
+#define PLAYER_STATE1_AWAITING_THROWN_BOOMERANG  (1 << 25) // Boomerang has been thrown and is flying in the air
+#define PLAYER_STATE1_TAKING_DAMAGE  (1 << 26)
+#define PLAYER_STATE1_SWIMMING  (1 << 27)
+#define PLAYER_STATE1_SKIP_OTHER_ACTORS_UPDATE  (1 << 28)
+#define PLAYER_STATE1_IN_CUTSCENE  (1 << 29)
 #define PLAYER_STATE1_LOCK_ON_FORCED_TO_RELEASE (1 << 30) // Lock-on was released automatically, for example by leaving the lock-on leash range
-#define PLAYER_STATE1_31 (1 << 31)
+#define PLAYER_STATE1_FALLING_INTO_GROTTO_OR_VOID  (1 << 31)
 
-#define PLAYER_STATE2_0 (1 << 0)
+#define PLAYER_STATE2_CAN_GRAB_PUSH_PULL_WALL  (1 << 0)
 #define PLAYER_STATE2_CAN_ACCEPT_TALK_OFFER (1 << 1) // Can accept a talk offer. "Speak" or "Check" is shown on the A button.
-#define PLAYER_STATE2_2 (1 << 2)
-#define PLAYER_STATE2_3 (1 << 3)
-#define PLAYER_STATE2_4 (1 << 4)
-#define PLAYER_STATE2_5 (1 << 5)
-#define PLAYER_STATE2_6 (1 << 6)
-#define PLAYER_STATE2_7 (1 << 7)
-#define PLAYER_STATE2_8 (1 << 8)
+#define PLAYER_STATE2_CAN_CLIMB_PUSH_PULL_WALL (1 << 2)
+#define PLAYER_STATE2_MAKING_REACTABLE_NOISE (1 << 3)
+#define PLAYER_STATE2_MOVING_PUSH_PULL_WALL  (1 << 4)
+#define PLAYER_STATE2_DISABLE_MOVE_ROTATION_WHILE_Z_TARGETING (1 << 5)
+#define PLAYER_STATE2_ALWAYS_DISABLE_MOVE_ROTATION  (1 << 6)
+#define PLAYER_STATE2_RESTRAINED_BY_ENEMY  (1 << 7)
+#define PLAYER_STATE2_ENABLE_PUSH_PULL_CAM  (1 << 8)
 #define PLAYER_STATE2_FORCE_SAND_FLOOR_SOUND (1 << 9) // Forces sand footstep sounds regardless of current floor type
-#define PLAYER_STATE2_10 (1 << 10)
-#define PLAYER_STATE2_11 (1 << 11)
-#define PLAYER_STATE2_12 (1 << 12)
+#define PLAYER_STATE2_DIVING  (1 << 10)
+#define PLAYER_STATE2_ENABLE_DIVE_CAMERA_AND_TIMER  (1 << 11)
+#define PLAYER_STATE2_IDLE_WHILE_CLIMBING  (1 << 12)
 #define PLAYER_STATE2_LOCK_ON_WITH_SWITCH (1 << 13) // Actor lock-on is active, specifically with Switch Targeting. Hold Targeting checks the state of the Z button instead of this flag.
-#define PLAYER_STATE2_14 (1 << 14)
-#define PLAYER_STATE2_15 (1 << 15)
+#define PLAYER_STATE2_FROZEN_IN_ICE  (1 << 14)
+#define PLAYER_STATE2_PAUSE_MOST_UPDATING  (1 << 15)
 #define PLAYER_STATE2_DO_ACTION_ENTER (1 << 16) // Sets the "Enter On A" DoAction
-#define PLAYER_STATE2_17 (1 << 17)
+#define PLAYER_STATE2_RELEASING_SPIN_ATTACK  (1 << 17)
 #define PLAYER_STATE2_CRAWLING (1 << 18) // Crawling through a crawlspace
-#define PLAYER_STATE2_19 (1 << 19)
+#define PLAYER_STATE2_BACKFLIPPING_OR_SIDEHOPPING  (1 << 19)
 #define PLAYER_STATE2_NAVI_ACTIVE (1 << 20) // Navi is visible and active. Could be hovering idle near Link or hovering over other actors.
-#define PLAYER_STATE2_21 (1 << 21)
-#define PLAYER_STATE2_22 (1 << 22)
-#define PLAYER_STATE2_23 (1 << 23)
-#define PLAYER_STATE2_24 (1 << 24)
-#define PLAYER_STATE2_25 (1 << 25)
-#define PLAYER_STATE2_26 (1 << 26)
-#define PLAYER_STATE2_27 (1 << 27)
+#define PLAYER_STATE2_NAVI_REQUESTING_TALK  (1 << 21)
+#define PLAYER_STATE2_CAN_DISMOUNT_HORSE  (1 << 22)
+#define PLAYER_STATE2_NEAR_OCARINA_ACTOR  (1 << 23)
+#define PLAYER_STATE2_ATTEMPT_PLAY_OCARINA_FOR_ACTOR  (1 << 24)
+#define PLAYER_STATE2_PLAYING_OCARINA_FOR_ACTOR  (1 << 25)
+#define PLAYER_STATE2_ENABLE_REFLECTION  (1 << 26)
+#define PLAYER_STATE2_PLAYING_OCARINA_GENERAL  (1 << 27)
 #define PLAYER_STATE2_IDLE_FIDGET (1 << 28) // Playing a fidget idle animation (under typical circumstances, see `Player_ChooseNextIdleAnim` for more info)
-#define PLAYER_STATE2_29 (1 << 29)
-#define PLAYER_STATE2_30 (1 << 30)
-#define PLAYER_STATE2_31 (1 << 31)
+#define PLAYER_STATE2_DISABLE_DRAW  (1 << 29)
+#define PLAYER_STATE2_ENABLE_FORWARD_SLIDE_FROM_ATTACK  (1 << 30)
+#define PLAYER_STATE2_FORCE_VOID_OUT  (1 << 31)
 
-#define PLAYER_STATE3_0 (1 << 0)
-#define PLAYER_STATE3_1 (1 << 1)
-#define PLAYER_STATE3_2 (1 << 2)
-#define PLAYER_STATE3_3 (1 << 3)
-#define PLAYER_STATE3_4 (1 << 4)
-#define PLAYER_STATE3_5 (1 << 5)
+#define PLAYER_STATE3_IGNORE_CEILING_FLOOR_AND_WATER  (1 << 0)
+#define PLAYER_STATE3_MIDAIR  (1 << 1)
+#define PLAYER_STATE3_PAUSE_ACTION_FUNC  (1 << 2)
+#define PLAYER_STATE3_ENDING_MELEE_ATTACK  (1 << 3)
+#define PLAYER_STATE3_CHECKING_FLOOR_AND_WATER_COLLISION  (1 << 4)
+#define PLAYER_STATE3_FORCE_PULL_OCARINA  (1 << 5)
 #define PLAYER_STATE3_RESTORE_NAYRUS_LOVE (1 << 6) // Set by ocarina effects actors when destroyed to signal Nayru's Love may be restored (see `ACTOROVL_ALLOC_ABSOLUTE`)
 #define PLAYER_STATE3_FLYING_WITH_HOOKSHOT (1 << 7) // Flying in the air with the hookshot as it pulls Player toward its destination
 
@@ -796,9 +796,9 @@ typedef struct Player {
     /* 0x03A8 */ FaceChange faceChange;
     /* 0x03AC */ Actor* heldActor;
     /* 0x03B0 */ Vec3f leftHandPos;
-    /* 0x03BC */ Vec3s unk_3BC;
-    /* 0x03C4 */ Actor* unk_3C4;
-    /* 0x03C8 */ Vec3f unk_3C8;
+    /* 0x03BC */ Vec3s leftHandRot;
+    /* 0x03C4 */ Actor* pushPullActor;
+    /* 0x03C8 */ Vec3f hookshotHeldPos;
     /* 0x03D4 */ char unk_3D4[0x058];
     /* 0x042C */ s8 doorType;
     /* 0x042D */ s8 doorDirection;
@@ -816,8 +816,8 @@ typedef struct Player {
     /* 0x0447 */ u8 unk_447;
     /* 0x0448 */ Actor* csActor; // Actor involved in a `csAction`. Typically the actor that invoked the cutscene.
     /* 0x044C */ char unk_44C[0x004];
-    /* 0x0450 */ Vec3f unk_450;
-    /* 0x045C */ Vec3f unk_45C;
+    /* 0x0450 */ Vec3f csStartPos;
+    /* 0x045C */ Vec3f csEndPos;
     /* 0x0468 */ char unk_468[0x002];
     /* 0x046A */ union {
         s16 haltActorsDuringCsAction; // If true, halt actors belonging to certain categories during a `csAction`
@@ -845,11 +845,11 @@ typedef struct Player {
     /* 0x0694 */ Actor* talkActor; // Actor offering to talk, or currently talking to, depending on context
     /* 0x0698 */ f32 talkActorDistance; // xz distance away from `talkActor`
     /* 0x069C */ char unk_69C[0x004];
-    /* 0x06A0 */ f32 unk_6A0;
+    /* 0x06A0 */ f32 stoneOfAgonyRumbleTimer;
     /* 0x06A4 */ f32 closestSecretDistSq;
-    /* 0x06A8 */ Actor* unk_6A8;
+    /* 0x06A8 */ Actor* ocarinaActor;
     /* 0x06AC */ s8 idleType;
-    /* 0x06AD */ u8 unk_6AD;
+    /* 0x06AD */ u8 attentionMode;
     /* 0x06AE */ u16 unk_6AE_rotFlags; // See `UNK6AE_ROT_` macros. If its flag isn't set, a rot steps to 0.
     /* 0x06B0 */ s16 upperLimbYawSecondary;
     /* 0x06B2 */ char unk_6B4[0x004];
@@ -871,24 +871,24 @@ typedef struct Player {
     /* 0x0840 */ u16 underwaterTimer;
     /* 0x0842 */ s8 meleeWeaponAnimation;
     /* 0x0843 */ s8 meleeWeaponState;
-    /* 0x0844 */ s8 unk_844;
-    /* 0x0845 */ u8 unk_845;
+    /* 0x0844 */ s8 comboTimer;
+    /* 0x0845 */ u8 slashCounter;
     /* 0x0846 */ u8 controlStickDataIndex; // cycles between 0 - 3. Used to index `controlStickSpinAngles` and `controlStickDirections`
     /* 0x0847 */ s8 controlStickSpinAngles[4]; // Stores a modified version of the control stick angle for the last 4 frames. Used for checking spins.
     /* 0x084B */ s8 controlStickDirections[4]; // Stores the control stick direction (relative to shape yaw) for the last 4 frames. See `PlayerStickDirection`.
 
     /* 0x084F */ union {
         s8 actionVar1;
-        s8 facingUpSlope; // Player_Action_SlideOnSlope: facing uphill when sliding on a slope
-        s8 bottleCatchType; // Player_Action_SwingBottle: entry type for `sBottleCatchInfo`, corresponds to actor caught in a bottle
+        s8 facingUpSlope; // Player_SlipOnSlope: facing uphill when sliding on a slope
+        s8 bottleCatchType; // Player_SwingBottle: entry type for `sBottleCatchInfo`, corresponds to actor caught in a bottle
     } av1; // "Action Variable 1": context dependent variable that has different meanings depending on what action is currently running
 
     /* 0x0850 */ union {
         s16 actionVar2;
-        s16 fallDamageStunTimer; // Player_Action_Idle: Prevents any movement and shakes model up and down quickly to indicate fall damage stun
-        s16 bonked; // Player_Action_Roll: set to true after bonking into a wall or an actor
-        s16 startedTextbox; // Player_Action_SwingBottle: set to true when the textbox is started
-        s16 inWater; // Player_Action_SwingBottle: true if a bottle is swung in water. Used to determine which bottle swing animation to use.
+        s16 fallDamageStunTimer; // Player_StandingStill: Prevents any movement and shakes model up and down quickly to indicate fall damage stun
+        s16 bonked; // Player_Rolling: set to true after bonking into a wall or an actor
+        s16 startedTextbox; // Player_SwingBottle: set to true when the textbox is started
+        s16 inWater; // Player_SwingBottle: true if a bottle is swung in water. Used to determine which bottle swing animation to use.
     } av2; // "Action Variable 2": context dependent variable that has different meanings depending on what action is currently running
 
     /* 0x0854 */ f32 unk_854;

@@ -1,6 +1,6 @@
 #include "ultra64.h"
 #include "versions.h"
-
+#include "z64Ooonga.h"
 // Declared before including other headers for BSS ordering
 extern uintptr_t gSegments[NUM_SEGMENTS];
 
@@ -21,6 +21,7 @@ extern struct IrqMgr gIrqMgr;
 #if PLATFORM_N64
 #include "cic6105.h"
 #include "n64dd.h"
+
 #endif
 
 #pragma increment_block_number "gc-eu:160 gc-eu-mq:160 gc-jp:160 gc-jp-ce:160 gc-jp-mq:160 gc-us:160 gc-us-mq:160" \
@@ -60,6 +61,11 @@ OSMesg sSerialMsgBuf[1];
 #if ENABLE_HACKER_DEBUG
 Debug gDebug;
 #endif
+
+
+struct OongaState gOongaState = {
+};
+
 
 Rainbow gRainbow;
 

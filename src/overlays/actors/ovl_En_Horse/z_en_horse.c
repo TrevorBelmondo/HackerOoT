@@ -724,8 +724,8 @@ void EnHorse_ResetRace(EnHorse* this, PlayState* play) {
 s32 EnHorse_PlayerCanMove(EnHorse* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
 
-    if ((player->stateFlags1 & PLAYER_STATE1_0) || func_8002DD78(GET_PLAYER(play)) == true ||
-        (player->stateFlags1 & PLAYER_STATE1_20) || ((this->stateFlags & ENHORSE_FLAG_19) && !this->inRace) ||
+    if ((player->stateFlags1 & PLAYER_STATE1_EXITING_SCENE ) || func_8002DD78(GET_PLAYER(play)) == true ||
+        (player->stateFlags1 & PLAYER_STATE1_IN_FIRST_PERSON_MODE ) || ((this->stateFlags & ENHORSE_FLAG_19) && !this->inRace) ||
         this->action == ENHORSE_ACT_HBA || player->actor.flags & ACTOR_FLAG_TALK ||
         play->csCtx.state != CS_STATE_IDLE) {
         return false;
@@ -3571,7 +3571,7 @@ void EnHorse_Update(Actor* thisx, PlayState* play2) {
         CollisionCheck_SetAT(play, &play->colChkCtx, &this->cyl1.base);
         CollisionCheck_SetOC(play, &play->colChkCtx, &this->cyl1.base);
         CollisionCheck_SetOC(play, &play->colChkCtx, &this->cyl2.base);
-        if ((player->stateFlags1 & PLAYER_STATE1_0) && player->rideActor != NULL) {
+        if ((player->stateFlags1 & PLAYER_STATE1_EXITING_SCENE ) && player->rideActor != NULL) {
             if (play->sceneId != SCENE_LON_LON_RANCH ||
                 (play->sceneId == SCENE_LON_LON_RANCH && (thisx->world.pos.z < -2400.0f))) {
                 EnHorse_UpdateConveyors(this, play);

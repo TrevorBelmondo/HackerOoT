@@ -1089,7 +1089,7 @@ void func_80A0461C(EnElf* this, PlayState* play) {
         // `SCENE_CAM_TYPE_SHOOTING_GALLERY`.
         // However, of these three, only `SCENE_CAM_TYPE_FIXED_SHOP_VIEWPOINT` is used with `VIEWPOINT_PIVOT`,
         // so here the bit check is equivalent to checking for `SCENE_CAM_TYPE_FIXED_SHOP_VIEWPOINT`.
-        if ((player->stateFlags1 & PLAYER_STATE1_10) ||
+        if ((player->stateFlags1 & PLAYER_CSMODE_ENTER_WARP) ||
             ((R_SCENE_CAM_TYPE & 0x10) && Play_CheckViewpoint(play, VIEWPOINT_PIVOT))) {
             temp = 12;
             this->unk_2C0 = 100;
@@ -1520,7 +1520,7 @@ void EnElf_Draw(Actor* thisx, PlayState* play) {
     Player* player = GET_PLAYER(play);
 
     if ((this->unk_2A8 != 8) && !(this->fairyFlags & 8)) {
-        if (!(player->stateFlags1 & PLAYER_STATE1_20) || (kREG(90) < this->actor.projectedPos.z)) {
+        if (!(player->stateFlags1 & PLAYER_STATE1_IN_FIRST_PERSON_MODE ) || (kREG(90) < this->actor.projectedPos.z)) {
             dListHead = GRAPH_ALLOC(play->state.gfxCtx, sizeof(Gfx) * 4);
 
             OPEN_DISPS(play->state.gfxCtx, "../z_en_elf.c", 2730);

@@ -289,7 +289,7 @@ void BgHakaSgami_Update(Actor* thisx, PlayState* play) {
     BgHakaSgami* this = (BgHakaSgami*)thisx;
     Player* player = GET_PLAYER(play);
 
-    if (!(player->stateFlags1 & (PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_28 | PLAYER_STATE1_29)) ||
+    if (!(player->stateFlags1 & (PLAYER_STATE1_TALKING | PLAYER_STATE1_DEAD | PLAYER_STATE1_SKIP_OTHER_ACTORS_UPDATE | PLAYER_STATE1_IN_CUTSCENE )) ||
         (this->actionFunc == BgHakaSgami_SetupSpin)) {
         this->actionFunc(this, play);
     }

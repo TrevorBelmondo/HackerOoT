@@ -268,7 +268,7 @@ void func_80A56994(EnHeishi4* this, PlayState* play) {
     if ((this->unk_282 == Message_GetState(&play->msgCtx)) && Message_ShouldAdvance(play)) {
         Message_CloseTextbox(play);
         SET_INFTABLE(INFTABLE_6C);
-        Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_8);
+        Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_WAIT);
         this->actionFunc = func_80A56A50;
     }
 }
@@ -286,7 +286,7 @@ void func_80A56ACC(EnHeishi4* this, PlayState* play) {
 
     SkelAnime_Update(&this->skelAnime);
     if (this->unk_288 <= currentFrame) {
-        Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSACTION_7);
+        Player_SetCsActionWithHaltedActors(play, NULL, PLAYER_CSMODE_END);
         this->actionFunc = func_80A5673C;
     }
 }

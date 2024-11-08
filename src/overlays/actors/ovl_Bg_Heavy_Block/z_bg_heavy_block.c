@@ -368,7 +368,7 @@ void BgHeavyBlock_LiftedUp(BgHeavyBlock* this, PlayState* play) {
 
     this->timer++;
 
-    Player_SetCsActionWithHaltedActors(play, &player->actor, PLAYER_CSACTION_8);
+    Player_SetCsActionWithHaltedActors(play, &player->actor, PLAYER_CSMODE_WAIT);
 
     // if parent is NULL, link threw it
     if (Actor_HasNoParent(&this->dyna.actor, play)) {

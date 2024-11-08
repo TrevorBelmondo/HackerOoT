@@ -464,10 +464,10 @@ void DoorWarp1_ChildWarpIdle(DoorWarp1* this, PlayState* play) {
         Audio_PlaySfxGeneral(NA_SE_EV_LINK_WARP, &player->actor.projectedPos, 4, &gSfxDefaultFreqAndVolScale,
                              &gSfxDefaultFreqAndVolScale, &gSfxDefaultReverb);
         OnePointCutscene_Init(play, 0x25E7, 999, &this->actor, CAM_ID_MAIN);
-        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_10);
+        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_ENTER_WARP);
 
-        player->unk_450.x = this->actor.world.pos.x;
-        player->unk_450.z = this->actor.world.pos.z;
+        player->csStartPos.x = this->actor.world.pos.x;
+        player->csStartPos.z = this->actor.world.pos.z;
         this->unk_1B2 = 1;
         DoorWarp1_SetupAction(this, DoorWarp1_ChildWarpOut);
     }
@@ -539,7 +539,7 @@ void DoorWarp1_RutoWarpIdle(DoorWarp1* this, PlayState* play) {
 
     if (this->rutoWarpState != WARP_BLUE_RUTO_STATE_INITIAL && DoorWarp1_PlayerInRange(this, play)) {
         this->rutoWarpState = WARP_BLUE_RUTO_STATE_ENTERED;
-        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_10);
+        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_ENTER_WARP);
         this->unk_1B2 = 1;
         DoorWarp1_SetupAction(this, func_80999EE0);
     }
@@ -647,9 +647,9 @@ void DoorWarp1_AdultWarpIdle(DoorWarp1* this, PlayState* play) {
         player = GET_PLAYER(play);
 
         OnePointCutscene_Init(play, 0x25E8, 999, &this->actor, CAM_ID_MAIN);
-        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_10);
-        player->unk_450.x = this->actor.world.pos.x;
-        player->unk_450.z = this->actor.world.pos.z;
+        Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_ENTER_WARP);
+        player->csStartPos.x = this->actor.world.pos.x;
+        player->csStartPos.z = this->actor.world.pos.z;
         this->unk_1B2 = 20;
         DoorWarp1_SetupAction(this, func_8099A508);
     }

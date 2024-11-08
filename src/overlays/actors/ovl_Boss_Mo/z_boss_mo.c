@@ -480,7 +480,7 @@ void BossMo_Tentacle(BossMo* this, PlayState* play) {
                 if ((this->sfxTimer % 32) == 0) {
                     Audio_PlaySfxIncreasinglyTransposed(&this->tentTipPos, NA_SE_EN_MOFER_WAVE, gMorphaTransposeTable);
                     Rumble_Request(0, 100, 5, 2);
-                    Player_PlaySfx(player, NA_SE_VO_LI_FREEZE + player->ageProperties->unk_92);
+                    Player_PlaySfx(player, NA_SE_VO_LI_FREEZE + player->ageProperties->ageVoiceSfxOffset);
                 }
             } else {
                 maxSwingRateX = 2000.0f;
@@ -494,7 +494,7 @@ void BossMo_Tentacle(BossMo* this, PlayState* play) {
                 if ((this->sfxTimer % 16) == 0) {
                     Audio_PlaySfxIncreasinglyTransposed(&this->tentTipPos, NA_SE_EN_MOFER_WAVE, gMorphaTransposeTable);
                     Rumble_Request(0, 160, 5, 4);
-                    Player_PlaySfx(player, NA_SE_VO_LI_FREEZE + player->ageProperties->unk_92);
+                    Player_PlaySfx(player, NA_SE_VO_LI_FREEZE + player->ageProperties->ageVoiceSfxOffset);
                 }
             }
         } else if (this->work[MO_TENT_ACTION_STATE] == MO_TENT_RETREAT) {
@@ -1234,7 +1234,7 @@ void BossMo_IntroCs(BossMo* this, PlayState* play) {
                  (fabsf(player->actor.world.pos.x - -180.0f) < 40.0f))) {
                 // checks if Link is on one of the four platforms
                 Cutscene_StartManual(play, &play->csCtx);
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_8);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_WAIT);
                 this->subCamId = Play_CreateSubCamera(play);
                 Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STAT_WAIT);
                 Play_ChangeCameraStatus(play, this->subCamId, CAM_STAT_ACTIVE);
@@ -1342,11 +1342,11 @@ void BossMo_IntroCs(BossMo* this, PlayState* play) {
             Math_ApproachF(&this->actor.speed, sp80, 1.0f, sp78);
             Math_ApproachF(&this->subCamYawRate, sp7C, 1.0f, 128.0f);
             if (this->work[MO_TENT_MOVE_TIMER] == 525) {
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_2);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_TURN_AROUND_SURPRISED_SHORT);
             }
             if (this->work[MO_TENT_MOVE_TIMER] > 540) {
                 this->csState = MO_INTRO_REVEAL;
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_1);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_IDLE);
                 sMorphaTent1->drawActor = true;
                 player->actor.world.pos.x = 180.0f;
                 player->actor.world.pos.z = -210.0f;
@@ -1456,7 +1456,7 @@ void BossMo_IntroCs(BossMo* this, PlayState* play) {
                 // MO_BATTLE / SUB_CAM_ID_DONE
                 this->csState = this->subCamId = 0;
                 Cutscene_StopManual(play, &play->csCtx);
-                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+                Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
             }
             break;
     }
@@ -1521,7 +1521,7 @@ void BossMo_DeathCs(BossMo* this, PlayState* play) {
     switch (this->csState) {
         case MO_DEATH_START:
             Cutscene_StartManual(play, &play->csCtx);
-            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_8);
+            Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_WAIT);
             this->subCamId = Play_CreateSubCamera(play);
             Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STAT_WAIT);
             Play_ChangeCameraStatus(play, this->subCamId, CAM_STAT_ACTIVE);
@@ -1691,7 +1691,7 @@ void BossMo_DeathCs(BossMo* this, PlayState* play) {
                     Play_ReturnToMainCam(play, this->subCamId, 0);
                     this->subCamId = SUB_CAM_ID_DONE;
                     Cutscene_StopManual(play, &play->csCtx);
-                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSACTION_7);
+                    Player_SetCsActionWithHaltedActors(play, &this->actor, PLAYER_CSMODE_END);
                     sMorphaTent1->actor.world.pos.y = -1000.0f;
                 }
             } else {

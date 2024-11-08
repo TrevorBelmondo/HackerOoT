@@ -573,7 +573,7 @@ void Player_SetBootData(PlayState* play, Player* this) {
             currentBoots = PLAYER_BOOTS_KOKIRI_CHILD;
         }
     } else if (currentBoots == PLAYER_BOOTS_IRON) {
-        if (this->stateFlags1 & PLAYER_STATE1_27) {
+        if (this->stateFlags1 & PLAYER_STATE1_SWIMMING ) {
             currentBoots = PLAYER_BOOTS_IRON_UNDERWATER;
         }
         REG(27) = 500;
@@ -605,8 +605,8 @@ void Player_SetBootData(PlayState* play, Player* this) {
 }
 
 int Player_InBlockingCsMode(PlayState* play, Player* this) {
-    return (this->stateFlags1 & (PLAYER_STATE1_DEAD | PLAYER_STATE1_29)) || (this->csAction != PLAYER_CSACTION_NONE) ||
-           (play->transitionTrigger == TRANS_TRIGGER_START) || (this->stateFlags1 & PLAYER_STATE1_0) ||
+    return (this->stateFlags1 & (PLAYER_STATE1_DEAD | PLAYER_STATE1_IN_CUTSCENE )) || (this->csAction != PLAYER_CSACTION_NONE) ||
+           (play->transitionTrigger == TRANS_TRIGGER_START) || (this->stateFlags1 & PLAYER_STATE1_EXITING_SCENE ) ||
            (this->stateFlags3 & PLAYER_STATE3_FLYING_WITH_HOOKSHOT) ||
            ((gSaveContext.magicState != MAGIC_STATE_IDLE) && (Player_ActionToMagicSpell(this, this->itemAction) >= 0));
 }
@@ -614,7 +614,7 @@ int Player_InBlockingCsMode(PlayState* play, Player* this) {
 int Player_InCsMode(PlayState* play) {
     Player* this = GET_PLAYER(play);
 
-    return Player_InBlockingCsMode(play, this) || (this->unk_6AD == 4);
+    return Player_InBlockingCsMode(play, this) || (this->attentionMode == 4);
 }
 
 /**
@@ -698,11 +698,11 @@ void Player_SetModelGroup(Player* this, s32 modelGroup) {
 void func_8008EC70(Player* this) {
     this->itemAction = this->heldItemAction;
     Player_SetModelGroup(this, Player_ActionToModelGroup(this, this->heldItemAction));
-    this->unk_6AD = 0;
+    this->attentionMode = 0;
 }
 
 void Player_SetEquipmentData(PlayState* play, Player* this) {
-    if (this->csAction != PLAYER_CSACTION_86) {
+    if (this->csAction != PLAYER_CSMODE_START_SWORD_KNOCKED_FROM_HAND) {
         this->currentShield = SHIELD_EQUIP_TO_PLAYER(CUR_EQUIP_VALUE(EQUIP_TYPE_SHIELD));
         this->currentTunic = TUNIC_EQUIP_TO_PLAYER(CUR_EQUIP_VALUE(EQUIP_TYPE_TUNIC));
         this->currentBoots = BOOTS_EQUIP_TO_PLAYER(CUR_EQUIP_VALUE(EQUIP_TYPE_BOOTS));
@@ -731,17 +731,17 @@ void Player_ReleaseLockOn(Player* this) {
 /**
  * This function aims to clear Z-Target related state when it isn't in use.
  * It also handles setting a specific free fall related state that is interntwined with Z-Targeting.
- * TODO: Learn more about this and give a name to PLAYER_STATE1_19
+ * TODO: Learn more about this and give a name to PLAYER_STATE1_FREEFALLING 
  */
 void Player_ClearZTargeting(Player* this) {
     if ((this->actor.bgCheckFlags & BGCHECKFLAG_GROUND) ||
-        (this->stateFlags1 & (PLAYER_STATE1_21 | PLAYER_STATE1_23 | PLAYER_STATE1_27)) ||
-        (!(this->stateFlags1 & (PLAYER_STATE1_18 | PLAYER_STATE1_19)) &&
+        (this->stateFlags1 & (PLAYER_STATE1_CLIMBING  | PLAYER_STATE1_RIDING_HORSE  | PLAYER_STATE1_SWIMMING )) ||
+        (!(this->stateFlags1 & (PLAYER_STATE1_JUMPING  | PLAYER_STATE1_FREEFALLING )) &&
          ((this->actor.world.pos.y - this->actor.floorHeight) < 100.0f))) {
-        this->stateFlags1 &= ~(PLAYER_STATE1_Z_TARGETING | PLAYER_STATE1_FRIENDLY_ACTOR_FOCUS | PLAYER_STATE1_PARALLEL |
-                               PLAYER_STATE1_18 | PLAYER_STATE1_19 | PLAYER_STATE1_LOCK_ON_FORCED_TO_RELEASE);
-    } else if (!(this->stateFlags1 & (PLAYER_STATE1_18 | PLAYER_STATE1_19 | PLAYER_STATE1_21))) {
-        this->stateFlags1 |= PLAYER_STATE1_19;
+        this->stateFlags1 &= ~(PLAYER_STATE1_UNUSED_Z_TARGETING_FLAG  | PLAYER_STATE1_FRIENDLY_ACTOR_FOCUS | PLAYER_STATE1_PARALLEL |
+                               PLAYER_STATE1_JUMPING  | PLAYER_STATE1_FREEFALLING  | PLAYER_STATE1_LOCK_ON_FORCED_TO_RELEASE);
+    } else if (!(this->stateFlags1 & (PLAYER_STATE1_JUMPING  | PLAYER_STATE1_FREEFALLING  | PLAYER_STATE1_CLIMBING ))) {
+        this->stateFlags1 |= PLAYER_STATE1_FREEFALLING ;
     }
 
     Player_ReleaseLockOn(this);
@@ -775,7 +775,7 @@ void Player_SetAutoLockOnActor(PlayState* play, Actor* actor) {
 s32 func_8008EF30(PlayState* play) {
     Player* this = GET_PLAYER(play);
 
-    return (this->stateFlags1 & PLAYER_STATE1_23);
+    return (this->stateFlags1 & PLAYER_STATE1_RIDING_HORSE );
 }
 
 s32 func_8008EF44(PlayState* play, s32 ammo) {
@@ -935,7 +935,7 @@ s32 Player_GetEnvironmentalHazard(PlayState* play) {
         envHazard = ((this->currentBoots == PLAYER_BOOTS_IRON) && (this->actor.bgCheckFlags & BGCHECKFLAG_GROUND))
                         ? (PLAYER_ENV_HAZARD_UNDERWATER_FLOOR - 1)
                         : (PLAYER_ENV_HAZARD_UNDERWATER_FREE - 1);
-    } else if (this->stateFlags1 & PLAYER_STATE1_27) { // Swimming
+    } else if (this->stateFlags1 & PLAYER_STATE1_SWIMMING ) { // Swimming
         envHazard = PLAYER_ENV_HAZARD_SWIMMING - 1;
     } else {
         return PLAYER_ENV_HAZARD_NONE;
@@ -1341,11 +1341,11 @@ s32 Player_OverrideLimbDrawGameplayDefault(PlayState* play, s32 limbIndex, Gfx**
             if ((sLeftHandType == PLAYER_MODELTYPE_LH_BGS) && (gSaveContext.save.info.playerData.swordHealth <= 0.0f)) {
                 dLists += 4;
             } else if ((sLeftHandType == PLAYER_MODELTYPE_LH_BOOMERANG) &&
-                       (this->stateFlags1 & PLAYER_STATE1_BOOMERANG_THROWN)) {
+                       (this->stateFlags1 & PLAYER_STATE1_AWAITING_THROWN_BOOMERANG )) {
                 dLists = gPlayerLeftHandOpenDLs + gSaveContext.save.linkAge;
                 sLeftHandType = PLAYER_MODELTYPE_LH_OPEN;
             } else if ((this->leftHandType == PLAYER_MODELTYPE_LH_OPEN) && (this->actor.speed > 2.0f) &&
-                       !(this->stateFlags1 & PLAYER_STATE1_27)) {
+                       !(this->stateFlags1 & PLAYER_STATE1_SWIMMING )) {
                 dLists = gPlayerLeftHandClosedDLs + gSaveContext.save.linkAge;
                 sLeftHandType = PLAYER_MODELTYPE_LH_CLOSED;
             }
@@ -1357,7 +1357,7 @@ s32 Player_OverrideLimbDrawGameplayDefault(PlayState* play, s32 limbIndex, Gfx**
             if (sRightHandType == PLAYER_MODELTYPE_RH_SHIELD) {
                 dLists += this->currentShield * 4;
             } else if ((this->rightHandType == PLAYER_MODELTYPE_RH_OPEN) && (this->actor.speed > 2.0f) &&
-                       !(this->stateFlags1 & PLAYER_STATE1_27)) {
+                       !(this->stateFlags1 & PLAYER_STATE1_SWIMMING )) {
                 dLists = sPlayerRightHandClosedDLs + gSaveContext.save.linkAge;
                 sRightHandType = PLAYER_MODELTYPE_RH_CLOSED;
             }
@@ -1393,7 +1393,7 @@ s32 Player_OverrideLimbDrawGameplayFirstPerson(PlayState* play, s32 limbIndex, G
     Player* this = (Player*)thisx;
 
     if (!Player_OverrideLimbDrawGameplayCommon(play, limbIndex, dList, pos, rot, thisx)) {
-        if (this->unk_6AD != 2) {
+        if (this->attentionMode != 2) {
             *dList = NULL;
         } else if (limbIndex == PLAYER_LIMB_L_FOREARM) {
             *dList = sFirstPersonLeftForearmDLs[(void)0, gSaveContext.save.linkAge];
@@ -1500,7 +1500,7 @@ void func_800906D4(PlayState* play, Player* this, Vec3f* newTipPos) {
     }
 
     if ((this->meleeWeaponState > 0) &&
-        ((this->meleeWeaponAnimation < PLAYER_MWA_SPIN_ATTACK_1H) || (this->stateFlags2 & PLAYER_STATE2_17))) {
+        ((this->meleeWeaponAnimation < PLAYER_MWA_SPIN_ATTACK_1H) || (this->stateFlags2 & PLAYER_STATE2_RELEASING_SPIN_ATTACK ))) {
         func_80090480(play, &this->meleeWeaponQuads[0], &this->meleeWeaponInfo[1], &newTipPos[1], &newBasePos[1]);
         func_80090480(play, &this->meleeWeaponQuads[1], &this->meleeWeaponInfo[2], &newTipPos[2], &newBasePos[2]);
     }
@@ -1536,9 +1536,9 @@ void Player_DrawGetItem(PlayState* play, Player* this) {
 void func_80090A28(Player* this, Vec3f* vecs) {
     D_8012608C.x = D_80126080.x;
 
-    if (this->unk_845 >= 3) {
-        this->unk_845++;
-        D_8012608C.x *= 1.0f + ((9 - this->unk_845) * 0.1f);
+    if (this->slashCounter >= 3) {
+        this->slashCounter++;
+        D_8012608C.x *= 1.0f + ((9 - this->slashCounter) * 0.1f);
     }
 
     D_8012608C.x += 1200.0f;
@@ -1683,7 +1683,7 @@ void Player_PostLimbDrawGameplay(PlayState* play, s32 limbIndex, Gfx** dList, Ve
 
         if (this->actor.scale.y >= 0.0f) {
             if (!Player_HoldsHookshot(this) && ((heldActor = this->heldActor) != NULL)) {
-                if (this->stateFlags1 & PLAYER_STATE1_9) {
+                if (this->stateFlags1 & PLAYER_STATE1_READY_TO_SHOOT) {
                     static Vec3f D_80126128 = { 398.0f, 1419.0f, 244.0f };
 
                     Matrix_MultVec3f(&D_80126128, &heldActor->world.pos);
@@ -1698,14 +1698,14 @@ void Player_PostLimbDrawGameplay(PlayState* play, s32 limbIndex, Gfx** dList, Ve
                     Matrix_MtxFToYXZRotS(&leftHandMtx, &leftHandRot, 0);
 
                     if (heldActor->flags & ACTOR_FLAG_CARRY_X_ROT_INFLUENCE) {
-                        heldActor->world.rot.x = heldActor->shape.rot.x = leftHandRot.x - this->unk_3BC.x;
+                        heldActor->world.rot.x = heldActor->shape.rot.x = leftHandRot.x - this->leftHandRot.x;
                     } else {
-                        heldActor->world.rot.y = heldActor->shape.rot.y = this->actor.shape.rot.y + this->unk_3BC.y;
+                        heldActor->world.rot.y = heldActor->shape.rot.y = this->actor.shape.rot.y + this->leftHandRot.y;
                     }
                 }
             } else {
                 Matrix_Get(&this->mf_9E0);
-                Matrix_MtxFToYXZRotS(&this->mf_9E0, &this->unk_3BC, 0);
+                Matrix_MtxFToYXZRotS(&this->mf_9E0, &this->leftHandRot, 0);
             }
         }
     } else if (limbIndex == PLAYER_LIMB_R_HAND) {
@@ -1726,7 +1726,7 @@ void Player_PostLimbDrawGameplay(PlayState* play, s32 limbIndex, Gfx** dList, Ve
             Matrix_Push();
             Matrix_Translate(stringData->pos.x, stringData->pos.y, stringData->pos.z, MTXMODE_APPLY);
 
-            if ((this->stateFlags1 & PLAYER_STATE1_9) && (this->unk_860 >= 0) && (this->unk_834 <= 10)) {
+            if ((this->stateFlags1 & PLAYER_STATE1_READY_TO_SHOOT) && (this->unk_860 >= 0) && (this->unk_834 <= 10)) {
                 Vec3f sp90;
                 f32 distXYZ;
 
@@ -1775,7 +1775,7 @@ void Player_PostLimbDrawGameplay(PlayState* play, s32 limbIndex, Gfx** dList, Ve
             if ((this->heldItemAction == PLAYER_IA_HOOKSHOT) || (this->heldItemAction == PLAYER_IA_LONGSHOT)) {
                 static Vec3f D_80126184 = { 100.0f, 1500.0f, 0.0f };
 
-                Matrix_MultVec3f(&D_80126184, &this->unk_3C8);
+                Matrix_MultVec3f(&D_80126184, &this->hookshotHeldPos);
 
                 if (heldActor != NULL) {
                     static Vec3f D_80126190 = { 100.0f, 1640.0f, 0.0f };
@@ -1797,7 +1797,7 @@ void Player_PostLimbDrawGameplay(PlayState* play, s32 limbIndex, Gfx** dList, Ve
             }
 
             if ((this->unk_862 != 0) || ((func_8002DD6C(this) == 0) && (heldActor != NULL))) {
-                if (!(this->stateFlags1 & PLAYER_STATE1_10) && (this->unk_862 != 0) &&
+                if (!(this->stateFlags1 & PLAYER_STATE1_GETTING_ITEM ) && (this->unk_862 != 0) &&
                     (this->exchangeItemId != EXCH_ITEM_NONE)) {
                     Math_Vec3f_Copy(&sGetItemRefPos, &this->leftHandPos);
                 } else {
